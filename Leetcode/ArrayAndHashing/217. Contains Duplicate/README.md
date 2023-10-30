@@ -3,7 +3,7 @@
 💡 Difficulty: Easy<br>
 🛠️ Topics: Array, Sort, Hash<br>
 
-===========================================================<br>
+================================================================================================<br>
 Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
 
 Example 1:<br>
@@ -21,7 +21,7 @@ Output: true<br>
 Constraints:<br>
 1 <= nums.length <= 105<br>
 -109 <= nums[i] <= 109<br> 
-===========================================================<br>
+================================================================================================<br>
 ### UMPIRE Method:
 #### Understand
 
