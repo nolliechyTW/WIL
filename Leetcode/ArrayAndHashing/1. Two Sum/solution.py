@@ -8,7 +8,6 @@ class Solution:
             if complement in hashmap:
                 return [i, hashmap[complement]]
                 
-            # Store the counterpart of the number we have seen and current index
             hashmap[num] = i 
 
 
@@ -20,6 +19,8 @@ class Solution:
         for i, num in enumerate(nums):
             if num in hashmap:
                 return [i, hashmap[num]]
+                
+            # Store the counterpart of the number we have seen and the current index
             hashmap[target-num] = i
 
                 
