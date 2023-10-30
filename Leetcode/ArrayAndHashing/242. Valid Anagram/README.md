@@ -3,7 +3,7 @@
 💡 Difficulty: Easy<br>
 🛠️ Topics: String, Sort, HashTable<br>
 
-================================================================================================<br>
+=======================================================================================<br>
 Given two strings `s` and `t`, return true if `t` is an anagram of `s`, and false otherwise.
 
 An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
@@ -19,7 +19,7 @@ Output: false<br>
 Constraints:<br>
 1 <= s.length, t.length <= 5 * 104 <br>
 `s` and `t` consist of lowercase English letters.
-================================================================================================<br>
+=======================================================================================<br>
 ### UMPIRE Method:
 #### Understand
 
