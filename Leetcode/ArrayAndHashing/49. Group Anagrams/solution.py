@@ -3,7 +3,7 @@ class Solution:
         group_by_char = {}
 
         for value in strs:
-            key = ''.join(sorted(value))
+            key = ''.join(sorted(value)) # 'cool' --sorted--> ['c', 'l', 'o', 'o'] --join--> 'cloo'
             if key in group_by_char:
                 group_by_char[key].append(value)
             else:
