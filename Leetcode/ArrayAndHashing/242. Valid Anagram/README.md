@@ -17,7 +17,7 @@ Input: s = "rat", t = "car"<br>
 Output: false<br>
 
 Constraints:<br>
-1 <= s.length, t.length <= 5 * 104 <br>
+1 <= s.length, t.length <= 5 * 10^4 <br>
 `s` and `t` consist of lowercase English letters.
 =======================================================================================<br>
 ### UMPIRE Method:

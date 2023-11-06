@@ -19,8 +19,8 @@ Input: nums = [1,1,1,3,3,4,3,2,4,2]<br>
 Output: true<br>
 
 Constraints:<br>
-1 <= nums.length <= 105<br>
--109 <= nums[i] <= 109<br> 
+1 <= nums.length <= 10^5<br>
+-10^9 <= nums[i] <= 10^9<br> 
 =======================================================================================<br>
 ### UMPIRE Method:
 #### Understand

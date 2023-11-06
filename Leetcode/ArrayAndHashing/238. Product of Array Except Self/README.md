@@ -18,7 +18,7 @@ Input: nums = [-1,1,0,-3,3]<br>
 Output: [0,0,9,0,0]<br>
 
 Constraints:<br>
-- 2 <= nums.length <= 105<br>
+- 2 <= nums.length <= 10^5<br>
 - -30 <= nums[i] <= 30<br>
 - The product of any prefix or suffix of `nums` is guaranteed to fit in a 32-bit integer.
 =======================================================================================<br>
