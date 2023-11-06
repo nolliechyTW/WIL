@@ -63,18 +63,18 @@ board[i][j] is a digit 1-9 or '.' <br>
 
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 
-1. Storing the elements of the array in a HashMap or a Set<br>
-   As we iterate through the array, we can store each number in a Set. If the number is already in the Set, then we can return True. Otherwise we reach the end of the array and return False.
+1. Storing the elements of the array in a Hashset<br>
+   As we iterate through the array, we can store each number in a Set. If the number is already in the Hashset, then we can return True. Otherwise we reach the end of the array and return False.
 
 ### Plan
 
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Create a Set to store number. If the number is already in the Set, then return True. Otherwise we reach the end of the array and return False.
+General Idea: Create three Hashset to store number. If the number is already in the Hashset, then return True. Otherwise we reach the end of the array and return False.
 
-1. Create Set
-2. Iterate through numbers
+1. Create Hashset using `defaultdict(set)` in python
+2. Iterate through numbers()
    - If number is already in set return True
    - Else store number in set
 3. Return False if we have reached the end of the list without duplicate
@@ -95,7 +95,40 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N represents the number of items in the array.
+Let N be the board length, which is 9 in this question. Since the value of N is fixed, the time and space complexity of this algorithm can be interpreted as O(1).
+- Time Complexity: O(1)
+- Space Complexity: O(1)
 
-- Time Complexity: O(N)
-- Space Complexity: O(N)
+
+=======================================================================================<br>
+### HashMap(dictionary) vs HashSet(set): Main Differences
+
+- Purpose:
+    - HashMap: HashMap is used to store key-value pairs. It allows you to associate a value with a unique key and retrieve the value based on the key. It provides fast access to values based on their keys.
+    - HashSet: HashSet is used to store a collection of unique elements, with no associated values. It ensures that no duplicate elements are present in the set.
+
+- Data Structure:
+    - HashMap: HashMap is implemented as a hash table. It uses hashing to map keys to their corresponding values. Each key is unique, and the keys are used to look up the associated values.
+    - HashSet: HashSet is also implemented as a hash table, but it stores only the keys (or elements) without associated values. It ensures uniqueness of elements in the set.
+
+- Elements:
+    - HashMap: It stores key-value pairs as entries, and the keys must be unique within the HashMap. Values can be duplicated.
+    - HashSet: It stores individual elements, and each element must be unique within the set. There are no associated values.
+
+- Access:
+    - HashMap: You can access values in a HashMap by providing the corresponding key. It offers efficient key-based lookup operations.
+    - HashSet: You can check for the presence of an element in a HashSet using the contains method. It doesn't have a direct key-based lookup, as it's designed for set membership tests.
+
+- Iteration:
+    - HashMap: You can iterate through the key-value pairs in a HashMap using methods like keySet, values, or entrySet.
+    - HashSet: You can iterate through the elements in a HashSet using an enhanced for loop or an iterator.
+
+- Performance:
+    - HashMap: HashMap provides efficient key-based operations and is suitable for situations where you need to associate values with unique keys.
+    - HashSet: HashSet is optimized for checking element membership and ensuring uniqueness. It's useful when you only need to store a collection of distinct elements.
+
+### defaultdict() vs defaultdict(set) in python: : Main Differences
+- `defaultdict()`: Defaultdict is a sub-class of the dictionary class that returns a dictionary-like object. The functionality of both dictionaries and defaultdict are almost same except for the fact that defaultdict never raises a KeyError. It provides a default value for the key that does not exists.
+
+- `defaultdict(set)`: When you pass the set class as the default_factory argument when creating a defaultdict, it allows you to create a defaultdict where the default value for missing keys is an empty set (set()), and you can directly add values to these sets for each missing key. 
+
