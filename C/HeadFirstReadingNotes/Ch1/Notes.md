@@ -1,3 +1,4 @@
+# Intro
 ## How to compile and run the program using gcc (GNU Compiler Collection)
 1. Save the code in a file named with the extension .c
 2. complie with `gcc filename.c -o filename`
@@ -44,8 +45,8 @@ int main()
 ```
 
 ## Boolean Value
-- To C, the number 0 is the value for false. Anything that is not equal to 0 is treated as true. 
-- cmp: for return value, number 0 means success; anything that is not 0 means fail.
+- To C, the number `0` is the value for `false`. Anything that is not equal to 0 is treated as `true`. 
+- cmp: for `return value`, number `0` means `success`; anything that is not 0 means fail.
 
 ## switch
 - can test for multiple variables of a single variable.
