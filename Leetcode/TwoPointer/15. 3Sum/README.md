@@ -64,8 +64,8 @@ Since duplicate values will be next to each other, it's easy to skip them using 
 
 General Idea: Start traversing inwards, from both ends of the input string, and we can expect to see the same characters, in the same order
 
-1) Sort the input array.
-2) Initialize two pointers, `left` and `right`, where `left` starts from `i + 1`, and `right` starts from the end of the array. Here, `i` represents the current index of the element `n`.
+1) Sort the input array
+2) Initialize two pointers, `left` and `right`, where `left` starts from `i + 1`, and `right` starts from the end of the array. Here, `i` represents the current index of the element `n`
 2) Check if the sum of the numbers pointed to by these two pointers is equal to 0
     - If it is equal, add them to the triplets array
         - Skip if the next `num[left]` is equal to the previous one by increment `left` by 1
