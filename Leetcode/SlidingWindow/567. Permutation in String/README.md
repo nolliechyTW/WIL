@@ -31,8 +31,8 @@ Constraints:<br>
 2. Any requirement on time/space complexity?
     - O(n) time and O(m) space will do
 3. Are the characters case-sensitive? For example, is 'a' different from 'A'?
-    - s1 and s2 consist of lowercase English letters.
-4. Is it possible s1 is shorter than s2?
+    - s1 and s2 consist of lowercase English letters only
+4. Is it possible s1 is longer than s2?
     - Yes
 
 ### Match
@@ -43,37 +43,36 @@ Constraints:<br>
 Using a sliding window to check if any permutation of s1 is present in s2 by maintaining a moving window and updating character frequencies as the window slides through the input string
 
 2. HashMap<br>
-Using a HashMap to keep track of the frequency of characters in the current window.
+Using a HashMap to keep track of the frequency of characters in the current window
 
 
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea:  Using a sliding window technique and maintaining a character frequency dictionary to efficiently track the occurrences of characters within the sliding window.
+General Idea:  Use a sliding window of the same length as s1 to determine whether the number of occurrences of characters in s2 within this window is equal to the number of occurrences of characters in s1
 
 
-1) Initialization:
-- Initialize a dictionary (char_freq) to store the frequency of characters in the sliding window.
-- Set the window size (window_size) to the length of string s1.
-- Initialize a variable (matched) to keep track of the count of characters that are fully matched in the current window.
+1) Check the length of s1 and the length of s1 first 
+- If the length of s2 is less than the length of s1, return False since it's not possible for s1 to be a permutation of a shorter string
 
 2) Character Frequency Dictionary Initialization:
-- Iterate through each character in string s1.
-- Populate the char_freq dictionary with the initial frequency of characters in s1.
+- Iterate through each character in string s1
+- Populate the `char_count_s1` dictionary with the initial frequency of characters in s1
+- Populate the `char_count_s2` dictionary with the counts of characters in the initial window of s2 (from left to right - 1)
 
 3) Sliding Window Iteration:
-- Iterate through each character in string s2 using a loop.
+- Iterate through each character in string s2 using a loop
 - For each character in s2:
-    - Update the frequency of the current character in the sliding window (char_freq).
-    - Check if the frequency of the character going out of the window has reached zero. If so, decrement the matched count.
-    - If the window size is reached, update the frequency for the character going out of the window.
+    - Update the frequency of the current character in the sliding window 
+    - Check if the current window's character counts match those of s1
+    - Check if the frequency of the character going out of the window has reached zero. If so, remove it from the dictionary
+    - If the window size is reached, update the frequency for the character going out of the window and continue to slide the window to the right
 
-4) Check for Permutation:
+4) Return Result
 - Check if the matched count is equal to the length of string s1.
-If true, return True as a permutation of s1 is present in the current window.
-
-5) Return Result
+- If true, return True as a permutation of s1 is present in the current window.
+- Else return False
 
 
 ### Implement
