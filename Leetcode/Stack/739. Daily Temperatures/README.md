@@ -34,7 +34,7 @@ Constraints:<br>
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
 1) Regarding the definition of a 'warmer temperature,' should we consider a day as warmer only if the temperature on a future day is strictly higher than the current day, or is it acceptable if the future temperature is equal to the current day?
 2) Any requirement on time/space complexity?
-    - Shoule be O(N) for both time complexity and space complexity
+    - Should be O(N) for both time complexity and space complexity
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
