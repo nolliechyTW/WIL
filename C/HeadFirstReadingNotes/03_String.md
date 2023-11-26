@@ -7,7 +7,7 @@
 - for string manipulation
     - strchr() : find the location of a character inside a string
     - strcmp() : compare two strings
-    - strstr() : find the location of a astring inside another string
+    - strstr() : find the location of a string inside another string
     - strcpy() : copy one string to another
     - strlen() : find the length of a string
     - strcat() : concatenate two strings
@@ -28,7 +28,7 @@
             "Back to December",
             "Dancing with your ghost"
         }
-        // the compiler can tell there are 4 items in the list, so we can skip the [4] and just put []
+        // the compiler can tell there are 3 items in the list, so we can skip the [3] and just put []
     ```
 
 ## Array of arrays vs. array of pointers
@@ -60,8 +60,8 @@
         ```
     - We cannot edit a pointer to a string literal
         - but we can edit a character array
-            - e.g. my_string_ptr[0] = "M" -> THIS IS NOT ALLOWED
-            -      my_string[0] "M" -> THIS IS ALLOWED
+            - `my_string_ptr[0] = "M" -> THIS IS NOT ALLOWED`
+            - `my_string[0] "M" -> THIS IS ALLOWED`
 
 ## STRLEN() Implementation
 - Array Style
@@ -167,7 +167,8 @@
 ```
 
 ## Pointers to Arrays of Pointers to Strings
-- We can create antoehr pointer to the array of pointers:
+- We can create another pointer to the array of pointers:
+    
     `char** ptr_to_ptr = array_of_ptrs`;
 - And dereference as follows:
 ```
