@@ -11,9 +11,10 @@
 - The operating system controls how data gets into and out of the **Standard Input** and **Standard Output**. 
     - If you run a program from the command prompt or terminal, the operating system will send all of the keystrokes from the keyboard into the Standard Input
     - If the operating system reads any data from the Standard Output, by default it will send that data to the display
-    - `scanf(format_specifier, &variable);`
-    - `printf(format_string, value1, value2, ...);`
-        - Using the Standard Input and the Standard Output, we can redirect the Standard Input and Standard Output so that they read and write data somewhere else, such as to and from files
+    - The `scanf()` and `printf()` functions don’t know, or care, where the data comes from or goes to. They just read and write Standard Input and the Standard Output
+        - `scanf(format_specifier, &variable);`
+        - `printf(format_string, value1, value2, ...);`
+    - Using the Standard Input and the Standard Output, we can redirect the Standard Input and Standard Output so that they read and write data somewhere else, such as to and from files
 
 ## Redirect the Standard Input with `<`
 - Instead of entering data at the keyboard, we can use the `<` operator to read the data from a file
@@ -31,9 +32,9 @@
 
 ## fprintf() prints to a data stream
 - The `fprintf()` function allows you to choose where you want to send text to.
-    - You can tell fprintf() to send text to `stdout` (the Standard Output) or `stderr` (the Standard Error)
+- You can tell fprintf() to send text to `stdout` (the Standard Output) or `stderr` (the Standard Error)
     - cmp: The `printf() `function sends data to the `Standard Output`
-    - we can redirect the Standard Error using `2>`, for example: `./your_program 2> error.log`
+- we can redirect the Standard Error using `2>`, for example: `./your_program 2> error.log`
 
 
 ## fscanf() scans to a data stream
@@ -91,7 +92,7 @@ int main() {
 `./program1 | ./program2`
 - The output of program1 will become the input of program2
     - combine everything together: `(./program1 | ./program2) < spooky.csv > output.json`
-    - A series of connected processes is called a pipeline
+    - A series of connected processes is called a *pipeline*
 
 ## What If We Want to Output to More Than One File?
 - we can create a new data stream using the `fopen()` function:
@@ -108,7 +109,7 @@ int main() {
 ```
 // The main() function can read the command-line arguments as an array of strings. 
 
-int main(int argc, char*argv[]){
+int main(int argc, char *argv[]){
     .... do stuff here ....
 }
 
@@ -131,7 +132,8 @@ int main(int argc, char * argv[]){
     FILE *file2 = fopen(argv[4], "w"); 
     FILE *file3 = fopen(argv[5], "w"); 
 
-    while (fscanf(in "%79[^\n]\n", line) == 1){
+    // reads up to 79 characters or until a newline character is encountered
+    while (fscanf(in, "%79[^\n]\n", line) == 1){
         if (strstr(line, argv[1]))
         fprintf(file1, "%s\n", line);
         else if (strstr(lins, argv[3]))
@@ -146,4 +148,46 @@ int main(int argc, char * argv[]){
     return 0;
 }
 ```
+## Command-line Options
+- use `getopt()` from `<unistd.h>` to efficiently parse command-line options and their arguments, providing a standardized and flexible way to handle input parameters for your program.
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
+int main(int argc, char *argv[]) {
+    int size = 12;  // Default pizza size
+    char *topping = "cheese";  // Default pizza topping
+
+    // Use getopt to parse command-line options
+    int opt;
+    while ((opt = getopt(argc, argv, "s:t:")) != -1) {
+        switch (opt) {
+            case 's':
+                size = atoi(optarg); // Converting ASCII strings to integers
+                break;
+            case 't':
+                topping = optarg;
+                break;
+            default:
+                fprintf(stderr, "Usage: %s [-s size] [-t topping]\n", argv[0]);
+                exit(EXIT_FAILURE);
+        }
+    }
+
+    // Display the customized pizza order
+    printf("Customized Pizza Order:\n");
+    printf("Size: %d inches\n", size);
+    printf("Topping: %s\n", topping);
+
+    return 0;
+}
+```
+In this example:
+- The program defines two variables, size and topping, representing the default pizza size and topping.
+- It uses getopt() to parse command-line options. The options are specified in the string "s:t:", indicating that the program expects size (-s) and topping (-t) options, and both options require an argument.
+    - A `“ :”` (colon) following an option in the string means that the option takes an additional argument.
+- The while loop processes each option using a switch statement.
+- The program then prints out the customized pizza order based on the provided options.
+
+We can run the program e.g. `./order_pizza -s 14 -t pepperoni`
