@@ -1,7 +1,7 @@
 class Solution:
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
         # Combine position and speed into pairs and sort by position
-        pairs = sorted(zip(position, speed), key=lambda x: x[0])
+        pairs = sorted(zip(position, speed), key=lambda x: x[0]) # from smallest to largest position
 
         # Stack to store the time it takes for each car to reach the destination
         stack = []
