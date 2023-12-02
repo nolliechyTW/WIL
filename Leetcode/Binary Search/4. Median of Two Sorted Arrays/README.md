@@ -54,7 +54,38 @@ Binary search is a method for locating an element in a sorted list efficiently. 
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-- General Idea: 
+- General Idea: utilizes binary search to find a partition point in the shorter array, ensuring that the elements on both sides of the partition create a valid median for the combined arrays
+1) Variable Initialization:
+- Determine the lengths len_nums1 and len_nums2 of the input arrays nums1 and nums2.
+- Ensure that nums1 is the shorter array. If not, swap nums1 and nums2.
+
+2) Calculate Total Length and Midpoint:
+- Calculate the total length total_len of the combined arrays.
+- Compute the midpoint mid_point as half of the total length rounded up.
+
+3) Binary Search:
+- Initialize two pointers low and high for binary search in the shorter array nums1.
+- While low is less than or equal to high, perform binary search:
+    - Compute the midpoints mid1 and mid2 based on the current values of low and high.
+    - Calculate the values l1, l2, r1, and r2 representing elements around the potential partition.
+
+4) Check Valid Partition:
+- Check if the current partition is valid by ensuring that l1 <= r2 and l2 <= r1.
+
+5) Determine Median:
+- If the partition is valid:
+    - If the total length is odd, return the maximum of l1 and l2 as the median.
+    - If the total length is even, return the average of the maximum of l1 and l2 and the minimum of r1 and r2 as the median.
+
+6) Adjust Pointers:
+- If l1 > r2, adjust high for the binary search.
+- If l2 > r1, adjust low for the binary search.
+
+7) Repeat Binary Search:
+- Repeat the binary search until a valid partition is found or low exceeds high.
+
+8) Default Case:
+- If no valid partition is found, return 0.0 as the default median.
 
 
 ### Implement
