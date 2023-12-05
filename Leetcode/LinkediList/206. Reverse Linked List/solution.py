@@ -25,8 +25,7 @@ class Solution:
         if not curr:
             return prev
         
-        nextOne = curr.next
+        nxt = curr.next
         curr.next = prev
         
-        return self.reverse(nextOne, curr)
-
+        return self.reverse(nxt, curr)

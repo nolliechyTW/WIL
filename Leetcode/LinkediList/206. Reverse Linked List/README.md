@@ -32,10 +32,12 @@ Constraints:<br>
 > - Ask clarifying questions and use examples to understand what the interviewer wants out of this problem.
 > - Choose a “happy path” test input, different than the one provided, and a few edge case inputs. 
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
-1. Can the input be empty?
+1. Can the input be empty? (head is null?)
     - Yes
 2. Any requirement on time/space complexity?
     - O(N) in time and O(1) in space 
+3. Does the linked list have a cycle?
+    - No
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
