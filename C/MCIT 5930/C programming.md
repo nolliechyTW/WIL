@@ -1,3 +1,9 @@
+# CONTENT
+1. VARIABLES, \*POINTERS, ARRAYS[0], USER DEFINED TYPES
+2. STRINGS[]
+3. FILES(I/O)
+
+
 ## VARIABLES, \*POINTERS, ARRAYS[0], USER DEFINED TYPES
 
 ### Variables in C
@@ -391,3 +397,168 @@ e.g. #include <string.h> [link](https://www.tutorialspoint.com/c_standard_librar
     - OS would pass main() arguments. In command line we can pass it as:
         - `./myprogram argument1 argument2`
         
+
+## FILES(I/O)
+### What is file?
+- File is a logical collection of 1s and 0s
+- 2 basic types:
+    1) text (aka ASCII) files: plain printable text
+        - e.g. .c, .java, .txt, .tex, .sh, .html, .rst, .py
+    2) binary files: everthing else; generally not human readable/editable
+        - e.g. .o, .exe, .jpg, .mp3, .wmv, .doc, .xls, .ppt
+    3) somewhere in between: e.g. ps., .pdf
+
+### PennSim's .obj file format explained:
+- 5 sections contains:
+    1) CODE section
+        - maps to the .CODE directive
+        - `xCADE, <address>, <n=#word>` (16 bits each)
+    2) DATA section
+        - maps to the .DATA directive 
+        - `xDADA, <address>, <n=#word>` (16 bits each)
+    3) SYMBOL section
+        - maps to the LABELS we create in our assembly code
+        - `xC3B7, <address>, <n=#bytes>` (16 bits each)
+    4) FILENAME section
+        - maps to the name of the .C files the assembly came from
+        - `xF17E, <n=#bytes>` (16 bits each)
+    5) LINE NUMBER ection 
+        - tells us which assembly lines came from which .C file
+        - `x715E, <address>, <line>, <file-index>` (16 bits each)
+- for example
+    -  this is `file_format_example.asm`:
+        ```
+            .CODE
+            .ADDR x0000
+
+            LABEL1
+                CONST R0, #2
+                ADD R0, R0, R0
+            
+            .DATA
+            .ADDR x4000
+                MYVAR .BLKW x1
+        ```
+    - this is how it looks like in `file_format_example.obj`:
+        ```
+            CA DE 00 00 00 02 90 02
+            10 00 DA DA 40 00 00 01
+            00 00 C3 B7 40 00 00 05
+            4D 59 56 41 52 C3 B7 00
+            00 00 06 4C 41 42 45 4C
+            31
+        ```
+### Order of Bytes in a File
+- `Endianness`: how the binary data in a file is ordered
+    1) BIG endian files::
+        - Bytes are stored in file from MSB to LSB
+        - e.g. `CADE 0000 0002`
+    2) LITTLE endian files:
+        - Bytes are stored in file from LSB to MSB
+        - e.g. `DECA 0000  0200`
+
+### Type: FILE
+- `FILE` is a data type that holds information about an open file
+- It's operating system dependent; we use helper function to interact with it
+- Example structure declaration:
+    ```
+        typedef struct{
+            short int level;
+            short int token;
+            short int bsize;
+            char fd;
+            unsigned int flags;
+            unsigned char hold;
+            unsigned char *buffer;
+            unsigned char *curp;
+            unsigned int istemp;
+        } FILE
+    ```
+
+### Basic operations on files
+- open
+    - fopen()
+        - `FILE* fopen(const char *filename, const char *mode)`
+            - mode:
+                - `"r"` - open file for reading
+                - `"w"` - open file for writing
+                - `"a"` - append to file; if file exist, add stuff at the end
+                - `"rb"` - open binary file for reading
+                - `"wb"` - open file for binary output
+            - if file doesn't exist or cannot be created, NULL is returned
+            - otherwise, a pointer to the open FILE is returned 
+
+- close
+    - fclose()
+- read
+    - fgetc() // 1 character
+        - `int fgetc(FILE *stream)`
+            - stream: the pointer to an open file one wishes to read a char from
+            - if the file is at its end, returns EOF (typically -1)
+            - otherwise, return a byte(1 character) read from the file as an integer
+    - fgets() // 1 line
+    - fread() // multiple bytes
+        - `size_t fread(void* ptr, size_t size, size_t nmemb, FILE *stream)`
+            - `size_t` is typically an "unsigned int"
+                - ptr: to an array you want to read data into
+                - size: of a single element of your array
+                - nmemb: total number of elements in your array
+            - return the total number of elements successfully read
+            - if the number is different from nmemb, either we've hit EOF or an error occurred
+- write
+    - fputc()
+        - `int fputc(int character, FILE* stream)`
+            - if an error occurs, return EOF
+            - if no error occurs, return the same character that has been written
+    - fputs() 
+    - fwrite()
+
+### Example 1
+```
+    #include <stdio.h>
+
+    int main(){
+        FILE *my_file;
+        my_file = fopen("tom.txt", "w");
+        if (my_file == NULL) {return 1;}
+
+        fputc('T', my_file);
+        fputc('o', my_file);
+        fputc('m', my_file);
+
+        fclose(my_file);
+    }
+```
+
+### Example 2
+```
+    #include <stdio.h>
+    
+    /* this code will copy a file byte by byte */
+
+    int main(){
+        FILE *src_file, *des_file;
+        int byte_read;
+
+        src_file = fopen("file_format_ex.obj", "rb");
+        if(src_file == NULL) {return 1;}  // error code
+
+        des_file = fopen("file_format_ex_cp.obj", "wb");
+        if (des_file == NULL) { 
+            fclose(src_file); 
+            return 2; // different error code
+        } 
+
+        do {
+            byte_read = fgetc(src_file);
+            if (byte_read == EOF) break;
+
+            fputc(byte_read, des_file);
+        } while (1);
+
+        fclose(src_file); // fclose() return 0 if file closes
+        fclose(des_file); // otherwise return EOF on failure
+
+        return 0; 
+    }
+```
