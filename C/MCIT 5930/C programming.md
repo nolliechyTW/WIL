@@ -774,3 +774,30 @@ e.g. #include <string.h> [link](https://www.tutorialspoint.com/c_standard_librar
 
 
 ```
+
+## comparison 
+- `fputs` vs `fprintf`
+    - `fputs` is specifically designed for writing strings to a file
+        - `int fputs(const char *str, FILE *stream);`
+    - `fprintf` is a versatile function for writing various types of data to a file
+        - `int fprintf(FILE *stream, const char *format, ...);`
+
+    - Example Usage:
+        - fputs:
+            ```
+            FILE *file = fopen("example.txt", "w");
+            if (file != NULL) {
+                const char *text = "Hello, world!";
+                fputs(text, file);
+                fclose(file);
+            }
+            ```
+        - fprintf:
+            ```
+            FILE *file = fopen("example.txt", "w");
+            if (file != NULL) {
+                int num = 42;
+                fprintf(file, "The answer is %d\n", num);
+                fclose(file);
+            }
+            ```
