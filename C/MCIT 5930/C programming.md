@@ -3,6 +3,8 @@
 1. VARIABLES, \*POINTERS, ARRAYS[0], USER DEFINED TYPES
 2. STRINGS[]
 3. FILES(I/O)
+4. Dynamic Memory Allocation
+
 
 ## VARIABLES, \*POINTERS, ARRAYS[0], USER DEFINED TYPES
 
@@ -775,7 +777,7 @@ e.g. #include <string.h> [link](https://www.tutorialspoint.com/c_standard_librar
 
 ```
 
-## comparison 
+### comparison 
 - `fputs` vs `fprintf`
     - `fputs` is specifically designed for writing strings to a file
         - `int fputs(const char *str, FILE *stream);`
@@ -801,3 +803,265 @@ e.g. #include <string.h> [link](https://www.tutorialspoint.com/c_standard_librar
                 fclose(file);
             }
             ```
+## Dynamic Memory Allocation
+
+### What's the Heap?
+- Dynamic means at run time! 
+- Heap is accessible at run time, x4000 - x6FFF
+
+### Heap API
+  - `malloc()` and `free()` in `stdlib.h`
+    - `*void malloc(size_t size)`
+      - return a pointer to a region on the heap of size bytes
+      - return `NULL` if heap can't fulfill request
+    - `void free(*void ptr)`
+      - clear reservation for address pointed to be `ptr`
+      - the memory region pointed to by ptr, was previously given to you by malloc()
+
+#### Example 9
+```
+  #include <stdlib.h>
+  int main(){
+    int* int_array;
+    /* request memory allocation from heap; 2 rows * 4  bytes(int size) */
+    // int_array = malloc(2 * 4);
+    int_array = malloc( 2 * sizeof(int));
+
+    /* make certain malloc succeeded */
+    if (int_array == NULL) return 1;
+
+    /* populate array */
+    int_array[0] = 0;
+    int_array[1] = 1;
+
+    /* return allocated memory back to heap */
+    free(int_array);
+
+    return 0;
+  }
+```
+#### Example 10
+```
+  #include <stdlib.h>
+  int* create_array(int length){
+    int* array = NULL;
+    array = malloc(length * sizeof(int));
+    return array;
+  }
+
+  int main(){
+    int len = 2;
+    int* int_array = NULL;
+
+    int_array = create_array(len);
+    if (int_array == NULL) return 1;
+
+    int_array[0] = 0; // data is in heap
+    int_arrayp[1] = 1;
+
+    free(int_array);
+    return 0;
+  }
+```
+
+#### Example 11
+```
+  #include <stdlib.h>
+  
+  char str_global[3]; // in global/static memory
+
+  int main(){
+    char* str_readonly = "Hi"; // global/static memory
+    char str_stack[3]; // in stack memory
+    char* str_heap; // in heap memory
+
+    str_heap = malloc(strlen(str_readonly) + 1);
+
+    strcpy(str_global, str_readonly);
+    strcpy(str_stack, str_readonly);
+    strcpy(str_heap, str_readonly);
+
+    free(str_heap);
+
+  }
+```
+
+#### Example 12 - structure on the stack/heap
+```
+  #include <stdlib.h>
+  typedef struct cust_struct{
+    int id;
+    char* name;
+  } customer
+
+  int main(){
+    customer my_cust; // allocate my_cust on stack
+    my_cust.id = 1234;
+    
+    // allocate memory for "name" on the heap
+    my_cust.name = malloc(strlen("Tom")+1);
+    strcpy(my_cust.name, "Tom");
+
+    free(my_cust.name); // done the reservation
+    return 0;
+  }
+```
+
+#### Example 13 - structure on the stack/heap 2
+```
+  #include <stdlib.h>
+  typedef struct cust_struct{
+    int id;
+    char* name;
+  } customer
+
+  int main(){
+    customer* my_cust;
+    my_cust = malloc(size(customer));
+    
+    my_cust->id = 1234;
+    
+    // allocate memory for "name" on the heap
+    my_cust->name = malloc(strlen("Tom")+1);
+    strcpy(my_cust->name, "Tom");
+
+    free(my_cust.name); // done the reservation
+    free(my_cust);
+    return 0;
+  }
+
+```
+
+### Linked Lists
+#### Linking Structure on the Heap
+```
+  #include <stdlib.h>
+  typedef struct cust_struct{
+    int id;
+    char* name;
+    struct cust_struct *next;
+  } customer;
+
+  int main(){
+    customer* my_cust = malloc(sizeof(customer));
+      my_cust -> id = 1;
+      my_cust -> name = malloc(strlen("Tom") + 1);
+      strcpy(my_cust -> name, "Tom");
+
+    // allocate memory for 2nd customer
+    my_cust -> next = malloc(sizeof(customer));
+      my_cust -> next -> id = 2;
+      my_cust -> next -> name = malloc(strlen("Bob") + 1);
+      strcpy(my_cust -> next -> name, "Bob");
+      my_cust -> next -> next = NULL;
+  }
+```
+### Linked List Management 
+- A common technique to manage a linked list is to create functions to accomplish common tasks:
+  - add nodes to a linked list
+  - delete nodes
+  - find nodes
+  - rearrange nodes
+  - print the list
+    - We can use C's **multifile** development capability to create a library that contains helper function
+- In practice, we create a **header file** and put structure and function declarations in it, e.g. in `customer.h`:
+  ```
+    typedef struct cust_struct {
+      int id;
+      char* name;
+      struct cust_struct *next;
+    } customer
+  
+  ```
+
+#### Example 14 - working with header file
+```
+  /* customer.h */
+  typedef struct cust_struct {
+    int id;
+    char* name;
+    struct cust_struct *next;
+  } customer;
+  
+  customer* add_customer(customer* list, int id, char* name);
+
+
+```
+
+```
+  /* my_database.c - main file */
+  #include "customer.h"
+  #include <stdlib.h>
+
+  // definition of customer structure is in customer.h
+  int main(){
+    <!-- customer* my_list = malloc(sizeof(customer));
+      my_list -> id = 1;
+      my_list -> name = malloc(strlen("Tom")+1);
+      strcpy(my_list -> name, "Tom");
+      my_list -> next = NULL;
+
+      // add second customer using helper function
+      add_customer(my_list, 2, "Bob"); -->
+
+      // refactor - to add node
+      customer* my_list = NULL;
+      my_list = add_customer(my_list, 1, "Tom");
+
+      add_customer(my_list, 2, "Bob");
+      
+      // search for customer2
+      customer* a_customer = NUL;
+      a_customer = find_customer_by_ID(my_list, 2);
+
+      if (a_customer != NULL)
+        printf("Customer ID=%d, Name = %s\n", a_customer->id, a_customer->name);
+        
+
+  }
+
+```
+
+```
+  /*  customer.c */
+  #include "customer.h" // include customer structure declaration
+  #include <stdlib.h>
+
+  // args: pointer to head of linked list + new customer info
+  // returns: pointer to head of linked list
+  customer* add_customer(customer* list, int id, char* name){
+    // ALLOCATE MEMORY FOR A CUSTOMER
+    customer* new_cust = malloc(sizeof(customer));
+    if (new_cust == NULL) return 1;
+      new_cust -> id = id;
+      new_cust -> name = malloc(strlen(name)+ 1);
+      strcpy(new_cust -> name, name);
+      new_cust -> next  = NULL;
+
+    // if list was empty, return new customer as the head
+    if (list == NULL) {return (new_cust);} 
+
+    // otherwise, traverse list to the end, glue on new cust
+    customer* head = list;
+    // traverse to the end
+    while (last -> next != NULL){
+      list = list -> next;
+    }
+
+    // glue new customer to the end of the list
+    list-> next = new_cust;
+
+    // return head of the list
+    return head;
+  }
+
+  // args: pointer to head of linked list + customer id to find
+  // returns: pointer to matching customer on heap if found (else NULL)
+  customer* find_customer_by_ID (customer* list, int id){
+    // traverse the list until we find first node with matchin id
+    while ((list != NULL) && (list -> id != id))
+      list = list->next;
+    // return either the found customer, or NULL
+    return list
+  }
+```
