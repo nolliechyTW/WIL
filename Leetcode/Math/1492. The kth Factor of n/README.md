@@ -1,5 +1,5 @@
 ## 1492. The kth Factor of n
-🔗  Link: [Longest Substring Without Repeating Characters](https://leetcode.com/problems/the-kth-factor-of-n/description/?envType=study-plan-v2&envId=amazon-spring-23-high-frequency)<br>
+🔗  Link: [The kth Factor of n](https://leetcode.com/problems/the-kth-factor-of-n/description/?envType=study-plan-v2&envId=amazon-spring-23-high-frequency)<br>
 💡 Difficulty: Medium<br>
 🛠️ Topics: Number Thoery, Math<br>
 
