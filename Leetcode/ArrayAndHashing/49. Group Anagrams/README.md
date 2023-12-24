@@ -23,7 +23,7 @@ Input: strs = ["a"]<br>
 Output: [["a"]]<br>
 
 Constraints:<br>
-1 <= strs.length <= 104<br>
+1 <= strs.length <= 10^4<br>
 0 <= strs[i].length <= 100<br>
 strs[i] consists of lowercase English letters.<br>
 =======================================================================================<br>
