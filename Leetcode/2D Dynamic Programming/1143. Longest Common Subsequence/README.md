@@ -8,6 +8,7 @@ Given two strings `text1` and `text2`, return the length of their longest common
 
 A *subsequence* of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
 - For example, "ace" is a subsequence of "abcde". <br>
+
 A common subsequence of two strings is a subsequence that is common to both strings.
 
 
@@ -28,7 +29,8 @@ Explanation: There is no such common subsequence, so the result is 0.<br>
 
 Constraints:<br>
 - 1 <= text1.length, text2.length <= 1000
-- text1 and text2 consist of only lowercase English characters.
+- `text1` and `text2` consist of only lowercase English characters.
+
 =======================================================================================<br>
 ### UMPIRE Method:
 #### Understand
@@ -44,21 +46,26 @@ Constraints:<br>
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 
 
-- Storing the elements of the string in a Hashtable <br>
-As we iterate through the string, we can store each character in a Hashtable. If the character is already in the Hashtable, then we increment its count by 1. Otherwise, we add the character to the Hashtable and set its count to 1.
+- Dymanic Programming <br>
+Dealing with an optimization problem, we usually use either DP or greedy algorithm to solve it. The best way of doing this is by drawing an example and playing around with it. Here we go with DP.<br>
+Recall that there are two different techniques we can use to implement a dynamic programming solution; *memoization* and *tabulation*.<br>
+- **Memoization** is where we add caching to a function (that has no side effects). In dynamic programming, it is typically used on **recursive** functions for a **top-down** solution that starts with the initial problem and then recursively calls itself to solve smaller problems.
+- **Tabulation** uses a table to keep track of subproblem results and works in a **bottom-up** manner: solving the smallest subproblems before the large ones, in an iterative manner. Often, people use the words "tabulation" and "dynamic programming" interchangeably.
+
 
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Create a hashtable to store characters and their frequencies for both strings s and t. After storing the characters from both strings, compare them element-wise and count-wise. If they are identical, return True; otherwise, return False.
+General Idea: implements a 2D dynamic programming approach to construct a 2D grid to store intermediate results, updating the grid based on character matches and maximizing the subsequence length at each step.
 
-1) Create Hashtable for s and t respectivley
-2) Iterate through numbers
-    - If number is already in Hashtable, count ++
-    - Else store number in Hashtable and set its count = 1 
-3) Compare two Hashtable
+1. Grid Initialization: A grid `dp` is created, slightly larger than the sizes of `text1` and `text2`. It's filled with zeros to track the length of the common subsequence at different points.
 
+2. Iterating Through Strings: goes through each character of `text1` and `text2`. It compares characters from both strings to find matches.
+
+3. Updating the Grid: When matching characters are found, the grid is updated to reflect the longer subsequence. If characters don't match, the code chooses the longer subsequence found so far.
+
+4. Result: The final value in the grid represents the length of the longest common subsequence for the entire strings. 
 
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -72,8 +79,8 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N represents the number of items in the s and t.
+Assume `N` represents the length of `text1` and `M` represents the length of `text2`.
 
 
-- Time Complexity: O(N)
-- Space Complexity: O(N)
+- Time Complexity: O(N * M)
+- Space Complexity: O(N * M)
