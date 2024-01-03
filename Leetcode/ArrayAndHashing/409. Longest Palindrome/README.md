@@ -1,7 +1,7 @@
 ## 409. Longest Palindrome
 🔗  Link: [Longest Palindrome](https://leetcode.com/problems/longest-palindrome/description/)<br>
 💡 Difficulty: Easy<br>
-🛠️ Topics: HashTable, String<br>
+🛠️ Topics: HashSet, String<br>
 
 =======================================================================================<br>
 Given a string `s` which consists of lowercase or uppercase letters, return the length of the longest palindrome that can be built with those letters.<br>
@@ -41,9 +41,9 @@ Constraints:<br>
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 
 
-- Hashtable <br>
-    1) The problem requires keeping track of whether each character has been seen an odd or even number of times. A hashtable is well-suited for **tracking occurrences** of elements because it can directly associate each unique element (in this case, characters) with data (like its count or presence)
-    2) Since the problem involves letters that are case-sensitive, the maximum number of unique keys (characters) is limited (26 lowercase + 26 uppercase letters in the English alphabet). This constraint makes a hashtable an even more appealing choice, as the space complexity remains manageable
+- Hashset <br>
+    1) The problem requires keeping track of whether each character has been seen an odd or even number of times. A Hashset is well-suited for **tracking occurrences** of elements because it can directly associate each unique element (in this case, characters) with data (like its count or presence)
+    2) Since the problem involves letters that are case-sensitive, the maximum number of unique keys (characters) is limited (26 lowercase + 26 uppercase letters in the English alphabet). This constraint makes a Hashset an even more appealing choice, as the space complexity remains manageable
 
 ### Plan
 > - Sketch visualizations and write pseudocode
