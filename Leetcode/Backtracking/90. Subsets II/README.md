@@ -50,7 +50,7 @@ This step is crucial as it ensures that duplicates are adjacent, making it easie
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-![Alt text](image.png)<br>
+![img1](image-1.png)<br>
 
 General Idea: in the `for` loop inside the `backtrack` function, there is a check to skip the current element if it's the same as the previous one (except for the first element after the `start`).
 
