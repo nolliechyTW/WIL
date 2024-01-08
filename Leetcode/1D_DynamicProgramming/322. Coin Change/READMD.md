@@ -59,8 +59,16 @@ Constraints:<br>
 
 General Idea: by solving smaller sub-problems and using their results to solve larger ones, ind the minimum number of coins needed to make up a given amount, where you have an unlimited supply of each coin in the given denominations (Bottom-Up Approach)
 
-(tbc)
+1) Coin Filtering: 
+Filters out coins from the given list that are larger than the target amount, as they are not useful for making change.
 
+2) Dynamic Programming Array Initialization: 
+Creates a dynamic programming array `dp` *with a size one greater than the target amount*. It's initialized with infinity to represent the minimum number of coins needed, with the exception of `dp[0]` being set to `0`.
+
+3) Calculating Minimum Coins for Each Amount: 
+Iterates through each possible amount up to the target, using each coin to update `dp`. It calculates the minimum number of coins needed to make each amount by considering the current coin and the best previous result.
+
+4) Solution Determination: Checks if the target amount can be achieved with the available coins. If `dp[amount]` is not infinity, it returns the minimum number of coins required; otherwise, it returns `-1`, indicating no solution with the given coins.
 
 
 
