@@ -58,20 +58,20 @@ General Idea: A key point to note is that in a palindrome, every letter appears 
 2) Iterate each character char in string `s`
     - Check if 'char' is present in the unpaired_chars set:
         - If it is, it means we've found a pair for 'char'
-        - Increment the pairedCharsCount by 1, as we've found another pair
-        - Remove 'char' from unpaired_chars set, as it's now paired
+        - Increment the `pairedCharsCount` by 1, as we've found another pair
+        - Remove 'char' from `unpaired_chars` set, as it's now paired
 
-    - If 'char' is not in the unpaired_chars set:
-        - Add 'char' to the unpaired_chars set, as it's an unpaired character for now
+    - If 'char' is not in the `unpaired_chars` set:
+        - Add 'char' to the `unpaired_chars` set, as it's an unpaired character for now
 
 3) After the loop ends, check if there are any unpaired characters left
-    - If unpaired_chars is not empty:
-        - We can use one unpaired character as the middle character in the palindrome
-        - Therefore, return the total count of characters that can be used in the palindrome, which is twice the pairedCharsCount (as each pair contributes two characters) plus 1 for the middle character
+    - If `unpaired_chars` is not empty:
+        - We can use **one** unpaired character as the middle character in the palindrome
+        - Therefore, return the total count of characters that can be used in the palindrome, which is *twice the pairedCharsCount* (as each pair contributes two characters) *plus 1* for the middle character
 
-    - If unpaired_chars is empty:
+    - If **unpaired_chars** is empty:
         - All characters are paired, and we can't use any character as a middle character
-        - Thus, return twice the pairedCharsCount, as each pair contributes two characters to the palindrome
+        - Thus, return *twice the pairedCharsCount*, as each pair contributes two characters to the palindrome
 
 
 ### Implement
