@@ -20,7 +20,7 @@ Explanation: The longest palindrome that can be built is "a", whose length is 1.
 
 Constraints:<br>
 - 1 <= s.length <= 2000<br>
-- `s` consists of lowercase and/or uppercase English letters only.
+- `s` consists of lowercase and/or uppercase English letters only
 
 =======================================================================================<br>
 ### UMPIRE Method:
