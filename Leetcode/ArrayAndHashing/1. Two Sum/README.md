@@ -24,10 +24,10 @@ Input: nums = [3,3], target = 6<br>
 Output: [0,1]<br>
 
 Constraints:<br>
-2 <= nums.length <= 10^4<br>
--10^9 <= nums[i] <= 10^9<br>
--10^9 <= target <= 10^9<br>
-Only one valid answer exists.<br>
+- 2 <= nums.length <= 10^4<br>
+- -10^9 <= nums[i] <= 10^9<br>
+- -10^9 <= target <= 10^9<br>
+- Only one valid answer exists<br>
 =======================================================================================<br>
 ### UMPIRE Method:
 #### Understand

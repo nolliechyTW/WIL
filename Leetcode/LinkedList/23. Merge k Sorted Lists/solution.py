@@ -3,6 +3,9 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+import heapq
+
+
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]: 
         if not lists:
@@ -72,3 +75,27 @@ solution = Solution()
 merged_list_head = solution.mergeKLists([list1, list2, list3])
 
 # The merged_list_head is now the head of the merged linked list
+
+
+### another solution
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]: 
+        # Initialize a heap with the first node of each list, if not empty
+        min_heap = [(node.val, idx) for idx, node in enumerate(lists) if node]
+        heapq.heapify(min_heap)
+
+        # Dummy node to start the merged list
+        head = current = ListNode(None)
+
+        while min_heap:
+            val, idx = heapq.heappop(min_heap)
+            current.next = ListNode(val)
+            current = current.next
+
+            # Move to the next node in the chosen list and add it to the heap
+            next_node = lists[idx].next
+            lists[idx] = next_node
+            if next_node:
+                heapq.heappush(min_heap, (next_node.val, idx))
+
+        return head.next

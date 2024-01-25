@@ -44,9 +44,9 @@ Output: false<br>
 Explanation: Same as Example 1, except with the 5 in the top left corner being modified to 8. Since there are two 8's in the top left 3x3 sub-box, it is invalid.<br>
 
 Constraints:<br>
-board.length == 9 <br>
-board[i].length == 9 <br>
-board[i][j] is a digit 1-9 or '.' <br>
+- board.length == 9 
+- board[i].length == 9 
+- board[i][j] is a digit 1-9 or '.'<br>
 =======================================================================================<br>
 
 ### UMPIRE Method:
@@ -64,20 +64,20 @@ board[i][j] is a digit 1-9 or '.' <br>
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 
 1. Storing the elements of the array in a Hashset<br>
-   As we iterate through the array, we can store each number in a Set. If the number is already in the Hashset, then we can return True. Otherwise we reach the end of the array and return False.
+   As we iterate through the array, we can store each number in a Set. If the number is already in the Hashset, then we can return `False`. Otherwise we reach the end of the array and return `True`.
 
 ### Plan
 
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Create three Hashset to store number. If the number is already in the Hashset, then return True. Otherwise we reach the end of the array and return False.
+General Idea: Create three Hashset to store number. If the number is already in the Hashset, then return `False`. Otherwise we reach the end of the array and return `True`.
 
 1. Create Hashset using `defaultdict(set)` in python
 2. Iterate through numbers()
-   - If number is already in set return True
+   - If number is already in set return `False`
    - Else store number in set
-3. Return False if we have reached the end of the list without duplicate
+3. Return `True` if we have reached the end of the list without duplicate
 
 ### Implement
 
@@ -95,7 +95,7 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Let N be the board length, which is 9 in this question. Since the value of N is fixed, the time and space complexity of this algorithm can be interpreted as O(1).
+Let `N` be the board length, which is 9 in this question. Since the value of N is fixed, the time and space complexity of this algorithm can be interpreted as O(1).
 - Time Complexity: O(1)
 - Space Complexity: O(1)
 
