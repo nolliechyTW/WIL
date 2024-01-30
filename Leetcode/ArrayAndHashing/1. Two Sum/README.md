@@ -55,9 +55,9 @@ General Idea: Create a hashmap to store index and number so that we can refer to
 
 1) Create a hashmap
 2) Iterate through the array
-    - If we see the counterpart in our hashmap then return the index of the counterpart and current index.
-    - Else Store the counterpart of the number we have seen and current index.
-    - It is said that there is exactly one solution.
+    - If we see the counterpart in our hashmap then return the index of the counterpart and current index
+    - Else store the counterpart of the number we have seen and current index
+    - It is said that there is exactly one solution
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
