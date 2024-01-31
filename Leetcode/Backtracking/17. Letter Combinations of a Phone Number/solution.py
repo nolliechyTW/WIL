@@ -15,8 +15,7 @@ class Solution:
                 return # Backtrack
             
             # Get the letters that the current digit maps to, and loop through them
-            possible_letters = letters[digits[index]]
-            for letter in possible_letters:
+            for letter in letters[digits[index]]:
                 # Add the letter to our current path
                 path.append(letter)
                 # Move on to the next digit

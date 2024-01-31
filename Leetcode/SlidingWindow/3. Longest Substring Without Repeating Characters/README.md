@@ -17,8 +17,8 @@ Output: 1<br>
 Explanation: The answer is "b", with the length of 1.<br>
 
 Constraints:<br>
-0 <= s.length <= 5 * 10^4
-`s` consists of English letters, digits, symbols and spaces.
+- 0 <= s.length <= 5 * 10^4
+- `s` consists of English letters, digits, symbols and spaces
 =======================================================================================<br>
 ### UMPIRE Method:
 #### Understand
@@ -29,7 +29,7 @@ Constraints:<br>
 1. Can the input be empty?
     - No
 2. Any requirement on time/space complexity?
-    - O(n) time and O(1) space will do.
+    - O(n) time and O(1) space will do
 3. Are the characters case-sensitive? For example, is 'a' different from 'A'?
     - Yes
 
@@ -38,16 +38,16 @@ Constraints:<br>
 
 
 1. Sliding Window<br>
-We can maintain a set to keep track of characters in the current window and use two pointers to represent the start and end of the window. Move the end pointer until a repeating character is found, then move the start pointer to eliminate the repeated character. Keep track of the maximum length of the window.
+We can maintain a set to keep track of characters in the current window and use two pointers to represent the start and end of the window. **Move the end pointer until a repeating character is found, then move the start pointer to eliminate the repeated character**. Keep track of the maximum length of the window.
 
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Record the minimum price found as we proceed through the array and keep checking for a higher profit
+General Idea: Record the max length found as we proceed through the array and keep checking whether there is repeating character in the string
 
 1) Initialize variables `seen` to keep track of unique characters in the current substring and `left` to keep track of the length of the sliding window
-2) Iterate through the characters of the input string `s` using the variable `right` as the right pointer of the sliding window.
+2) Iterate through the characters of the input string `s` using the variable `right` as the right pointer of the sliding window 
     - Check for repeating characters
     - Update set and calculate length
 3) Return result
