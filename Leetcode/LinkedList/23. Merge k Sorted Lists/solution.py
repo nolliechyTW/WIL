@@ -98,9 +98,9 @@ class Solution:
             current = current.next
 
             # Move to the next node in the chosen list and add it to the heap
-            next_node = lists[idx].next
-            lists[idx] = next_node
-            if next_node:
-                heapq.heappush(min_heap, (next_node.val, idx))
+            next_node_in_list = lists[idx].next
+            lists[idx] = next_node_in_list
+            if next_node_in_list:
+                heapq.heappush(min_heap, (next_node_in_list.val, idx))
 
         return head.next

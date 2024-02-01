@@ -44,18 +44,15 @@ Constraints:<br>
     - You must write an algorithm with O(log n) runtime complexity.
 3. Will there be negative numbers?
     - Yes, the number will be both negative and positive
-4. Yes, the number will be both negative and positive
-    - Yes, there will always be a pivot point
-
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 
 1. Binary Search<br>
-Binary search is typically used when the data is sorted or partially sorted. In your specific problem, you are dealing with a rotated sorted array, which is a variant of a sorted array. This is a strong indicator that binary search might be a suitable approach. Also, binary search is chosen for its efficiency in searching. It has a time complexity of O(log n), making it much faster than linear search (O(n)) 
+Binary search is typically used when the data is sorted or partially sorted. In this problem, we are dealing with a rotated sorted array, which is a variant of a sorted array. This is a strong indicator that binary search might be a suitable approach. Also, binary search is chosen for its efficiency in searching. It has a time complexity of O(log n), making it much faster than linear search (O(n)) 
 
 2. Two pointers <br>
-The two-pointer technique is inherent in binary search, where you typically have `left` and `right` pointers. In problems where you need to narrow down a range (like finding a target in a sorted array), using two pointers to adjust the search space is a natural approach.
+The two-pointer technique is inherent in binary search, where you typically have `left` and `right` pointers. In problems we you need to narrow down a range (like finding a target in a sorted array), using two pointers to adjust the search space is a natural approach.
 
 
 ### Plan
@@ -99,5 +96,6 @@ see solution.py
 > - Discuss any pros and cons of the solution
 
 Assume N be the length of `nums`
+
 - Time Complexity: O(logN), binary search
 - Space Complexity: O(1)
