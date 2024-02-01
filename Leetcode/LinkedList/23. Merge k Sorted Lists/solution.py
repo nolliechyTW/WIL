@@ -27,8 +27,7 @@ class Solution:
         return self.merge_two_lists(left, right)
 
     def merge_two_lists(self, l1, l2):
-        dummy = ListNode(0)
-        current = dummy
+        current = dummy = ListNode(0)
 
         while l1 and l2:
             if l1.val <= l2.val:
@@ -78,6 +77,12 @@ merged_list_head = solution.mergeKLists([list1, list2, list3])
 
 
 ### another solution
+### Time Complexity: O(Nlogk), where N is the total number of elements in all the linked lists and k is the number of linked lists.
+    # heap initialization takes O(k * log k) time (heap insertion operation takes O(log k) time and it is performed k times).
+    # heap pop/push operation takes O(n * log k) time (performed n times).
+    # since k log k < n log k, the overall time complexity is O(N log k).
+### Space Complexity: O(k), where k is the number of linked lists.
+    # The heap will contain at most one node from each of the k lists at any time, making the space complexity for the heap O(k)
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]: 
         # Initialize a heap with the first node of each list, if not empty
