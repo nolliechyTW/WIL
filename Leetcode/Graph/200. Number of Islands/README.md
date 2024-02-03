@@ -43,7 +43,7 @@ Constraints:<br>
 1. Can the input grid be empty?
     - No
 2. Any requirement on time/space complexity?
-    - O(m+n) in time and O(1) in space 
+    - O(m * n) in time and O(1) in space 
 3. Can islands have irregular shapes, or are they always rectangular?
     - Yes
 4. Do diagonal connections between lands count towards forming an island?
