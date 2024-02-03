@@ -55,12 +55,18 @@ As we sort the string, we can maintain a map `"sorted string": [list of strings 
 
 General Idea: Create a map to associate sorted strings (keys) with the original input strings (values). After populating the map, return the values as a list of lists.
 
-1. Initialize a map.
+1. Initialize a map
 2. Iterate through the list of strings:
-- If a string's sorted version is already a key in the map, append the string to the corresponding list.
-- Else, create a new key-value pair.
-3. Return the values as a list with `.value()`, converting them with `list()`.
+- If a string's sorted version is already a key in the map, append the string to the corresponding list
+- Else, create a new key-value pair
+3. Return the values as a list with `.value()`, converting them with `list()`
 
+Improved Gerneral Idea: Traverse the strings and use a hashtable to store different anagram groups. Use the **character count** as the key of each group. (as image.png shown)
+![Alt text](./image.png) <br>
+- For each string, we use an array `count` to store the occurence and number of charaters. since the string only contains lowercase letter, the size of the array is 26 and each index is mapped to a lowercase chararter
+- Traverse the string, and generate another string based on the `count` array; put it as a key into the hash table along with the corresponding value (as image-1.png shown)
+![Alt text](image-1.png) <br>
+- Extract and return the values of the table as the result
 
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -76,5 +82,11 @@ see solution.py
 
 Assume N is the length of strs and K is the maximum length of a string in strs.
 
+for gerneral idea:
 - Time Complexity: O(NKlogK)
 - Space Complexity: O(NK)
+
+
+for improved general idea:
+- Time Complexity: O(N*K+N*26), traverse each strings and count the character + generate a key of size 26 == O(N*K)
+- Space Complexity: O(N*K+N*26) == O(N*K)

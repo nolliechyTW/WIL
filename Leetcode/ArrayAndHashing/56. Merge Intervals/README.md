@@ -39,7 +39,7 @@ Constraints:<br>
     - No, the minimum interval length is 1
 2. Any requirement on time/space complexity?
     - O(nlogn) time and O(1) space not including the resulting output array
-3. Is the array sorted?
+3. **Is the array sorted?**
     - No the intervals are not guaranteed to be sorted order
  
 ### Match
@@ -47,13 +47,13 @@ Constraints:<br>
 
 
 1. Sort <br>
-Sorting the intervals by their start times ensures that you process them in a sequential order. This is essential because it allows you to easily compare each interval with the previous one to check for overlaps. With sorted intervals, the logic to merge them becomes straightforward. If intervals are not sorted, we would have to compare each interval with all previously processed intervals, significantly complicating the algorithm and increasing its time complexity.
+**Sorting the intervals by their start times ensures that you process them in a sequential order.** This is essential because it allows you to easily compare each interval with the previous one to check for overlaps. With sorted intervals, the logic to merge them becomes straightforward. If intervals are not sorted, we would have to compare each interval with all previously processed intervals, significantly complicating the algorithm and increasing its time complexity.
 
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: sort the intervals first and then efficiently merge overlapping intervals in a single pass. We only need to compare each interval with the last one in our result list. 
+General Idea: Sort the intervals first and then efficiently merge overlapping intervals in a single pass. We only need to compare each interval with the last one in our result list. 
 
 1) Sort all intervals based on their low endpoints
 2) Initialize the results with the first interval

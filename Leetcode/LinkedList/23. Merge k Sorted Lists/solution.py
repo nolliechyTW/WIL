@@ -87,6 +87,7 @@ class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]: 
         # Initialize a heap with the first node of each list, if not empty
         min_heap = [(node.val, idx) for idx, node in enumerate(lists) if node]
+        # to prioritize the comparison, we use priority queue
         heapq.heapify(min_heap)
 
         # Dummy node to start the merged list
