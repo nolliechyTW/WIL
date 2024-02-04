@@ -10,7 +10,7 @@ class Solution:
         directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]
 
         def mark_escape(row, col):
-            if 0 <= row < rows and 0 <= col < cols and board[row][col] == 'O':
+            if 0 <= row < rows and 0 <= col < cols and board[row][col] == 'O': # key
                 board[row][col] = 'E'
                 for dr, dc in directions:
                     mark_escape(row + dr, col + dc)

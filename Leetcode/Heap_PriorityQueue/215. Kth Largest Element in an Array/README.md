@@ -51,7 +51,7 @@ A heap is particularly useful *when you don’t need the entire array sorted*. I
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-- General Idea: The min heap essentially keeps track of the k largest elements seen so far. By maintaining a size of k, it ensures that smaller elements are discarded, and only the k largest elements remain. When the iteration is complete, the smallest among these k largest elements (which is at the root of the min heap) is the kth largest element in the array
+- General Idea: The min heap essentially keeps track of the k largest elements seen so far. By **maintaining a size of k**, it ensures that smaller elements are discarded, and only the k largest elements remain. When the iteration is complete, the smallest among these k largest elements (which is at the root of the min heap) is the kth largest element in the array
 
 1) Initialize a Min Heap:
     - Create an empty min heap called `heap`.
