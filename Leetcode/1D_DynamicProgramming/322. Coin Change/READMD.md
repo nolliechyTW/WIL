@@ -50,14 +50,14 @@ Constraints:<br>
     - DP is a more robust solution because it explores all possible combinations of coins to find the minimum number of coins needed. This is crucial when the coin denominations don't follow a specific pattern or when larger denominations are not multiples of smaller ones
         - Assume, coins = [1, 6, 7, 9, 11] , amount = 13. Going via the greedy way, we will pick the coin with the highest denomination first = 11. And then pick two 1s. Which makes it 13 = 11 + 1 + 1. And return answer as 3. But clearly, our answer is 13 = 6 + 7 which makes minimum number of coins as 2. 
     
-    - DP builds up the solution by considering smaller subproblems. It explores all combinations, ensuring that the global optimal solution is found, which is especially important when certain combinations of smaller denominations might yield a better solution than using a larger denomination
+    - **DP builds up the solution by considering smaller subproblems**. It explores all combinations, ensuring that the global optimal solution is found, which is especially important when certain combinations of smaller denominations might yield a better solution than using a larger denomination
 
 
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: by solving smaller sub-problems and using their results to solve larger ones, ind the minimum number of coins needed to make up a given amount, where you have an unlimited supply of each coin in the given denominations (Bottom-Up Approach)
+General Idea: by solving smaller sub-problems and using their results to solve larger ones, find the minimum number of coins needed to make up a given amount, where you have an unlimited supply of each coin in the given denominations (Bottom-Up Approach)
 
 1) Coin Filtering: 
 Filters out coins from the given list that are larger than the target amount, as they are not useful for making change.

@@ -29,11 +29,9 @@ Constraints:<br>
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
 1. Can we confirm that a conference room is needed for each set of overlapping meetings? For example, if one meeting ends at the same time another begins, do they require separate rooms?
     - Yes
-<!-- 2. Any requirement on time/space complexity? 
-    - You must write a solution in O(n) time complexity and O(n) space complexity -->
-3. Should we assume the intervals are not sorted by their start or end times?
+2. **Should we assume the intervals are not sorted by their start or end times?**
     - Yes
-4. Are the intervals guaranteed to be valid, with the start time always less than or equal to the end time?
+3. Are the intervals guaranteed to be valid, with the start time always less than or equal to the end time?
     - Yes
 
 
@@ -45,7 +43,7 @@ Constraints:<br>
 - Priority Queue for Dynamic Minimum:
 A heap, particularly a min-heap, is an excellent tool for keeping track of the meeting with the earliest end time. This is crucial in deciding whether a new meeting can be accommodated in the same room or if a new room is needed.<br>
 - Efficient Overlap Detection:
-The problem requires you to check for overlaps between meetings. By keeping meetings in a min-heap sorted by their end times, you can efficiently compare the start time of a new meeting with the earliest ending meeting, which is always at the top of the heap.
+The problem requires you to check for overlaps between meetings. By keeping meetings in a min-heap sorted by their end times, we can efficiently *compare the start time of a new meetin*g with the *earliest ending meeting*, which is always at the top of the heap.
 
 
 ### Plan
@@ -70,7 +68,7 @@ The problem requires you to check for overlaps between meetings. By keeping meet
         - If no room is free, the new meeting's end time is simply added to the heap, representing the allocation of a new room.
 
 5) Determine the Number of Rooms:  
-    - The size of the heap at the end of the process gives the minimum number of rooms required. This is because the heap only contains meetings that are simultaneously occurring, and its size represents the peak number of concurrent meetings.
+    - The size of the heap at the end of the process gives the minimum number of rooms required. This is because the **heap only contains meetings that are simultaneously occurring**, and its size represents the peak number of concurrent meetings.
 
 
 ### Implement
