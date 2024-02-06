@@ -10,7 +10,7 @@ class Solution:
         # Compute minimum number of coins for each amount
         for target_amount in range(1, amount + 1):
             for coin in coins:
-                if target_amount - coin >= 0:
+                if target_amount >= coin:
                     dp[target_amount] = min(dp[target_amount], 1 + dp[target_amount - coin])
 
         # Check if a solution exists
