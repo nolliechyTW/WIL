@@ -63,6 +63,29 @@ The map (dictionary) keeps track of the indices of the elements in the list, all
 
 General Idea: 
 
+1) Initial Setup
+- `myMap`: A dictionary (or **map**) that maps each value inserted into the set to its index in myList. This allows for O(1) lookup time to check if a value exists in the set and to find its index if it does
+- `myList`: A **list** that stores all the values in the set. This structure enables O(1) time complexity when adding a new value (by appending to the end) and when retrieving a random value (by using random selection)
+
+2) Insertion (insert method)
+- When inserting a new value `val`, first check if it exists in myMap. If it does, return `False` since duplicates are not allowed
+- If `val` is not in myMap, add it to myMap *with its index in myList being the length of myList before val is appended*. This ensures val is correctly mapped to its position
+- Append val to myList and return `True`
+
+3) Deletion (remove method)
+- To remove a value `val`, first check if it exists in myMap
+- If it doesn't, return `False`
+- If `val` exists, find its index using myMap
+- Swap `val` with the **last element** in myList to ensure that removal can be done in 
+O(1) time by simply popping the last element
+- Update myMap to reflect the new index of the element that was swapped with val
+- *Pop the last element from myList*, effectively *removing `val`*
+- Delete `val` from myMap
+- Return True
+
+4) Retrieving a Random Element (getRandom method)
+Use `random.choice(self.myList)` to return a random element from myList. This operation is O(1) because it randomly indexes into the list.
+
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
 
@@ -75,7 +98,7 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume there are `N` coin denominations.
+Assume there are `N` operations. 
 
-- Time Complexity: O(amount * n)
-- Space Complexity: O(amount + 1) => O(amount)
+- Time Complexity: O(1)
+- Space Complexity: O(N)
