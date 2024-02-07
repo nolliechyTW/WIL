@@ -68,7 +68,7 @@ Constraints:<br>
 - 2 <= n <= 100
 - player is 1 or 2.
 - 0 <= row, col < n
-- (row, col) are unique for each different call to move.
+- (row, col) are unique for each different call to move
 - At most n^2 calls will be made to move
 
 =======================================================================================<br>
@@ -99,7 +99,15 @@ The problem is approached using Object-Oriented Programming (OOP), encapsulating
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-- General Idea: 
+- General Idea: the main idea is to efficiently check whether a player has won the game after each move, without having to check the entire board state. This is achieved through the use of counters for rows, columns, and diagonals.
+
+1) Initialization (`__init__` method):
+    - The constructor initializes the game board size (`n`) and sets up four counters: `rows`, `cols`, `diagonal`, and `anti_diagonal`. Each counter (except the diagonals, which are single integers) is a list of length `n` initialized to `0`. These counters will track the sum of marks for each row, column, and the two diagonals
+2) Making a Move (`move` method):
+    - The move method allows a player to place a mark on the board. The mark is represented by `1` for player 1 and `-1` for player 2. This method updates the counters based on the player's move
+    - Updating Counters: When a player makes a move at (row, col), the method updates the corresponding row and column counters by adding the player's mark (1 or -1). If the move is on the main diagonal (row == col), the main diagonal counter is updated. Similarly, if the move is on the anti-diagonal (`row + col == n - 1`), the anti-diagonal counter is updated.
+    - Checking for a Win: After updating the counters, the method checks if any of the counters equal `n` or `-n`. A value of n indicates that player 1 has filled an entire row, column, or diagonal with their marks, whereas -n indicates the same for player 2. If such a condition is met, the current player wins, and the method returns the player's number (1 or 2).
+    - If no win condition is met, the method returns `0`, indicating that the game continues without a winner yet.
 
 
 
