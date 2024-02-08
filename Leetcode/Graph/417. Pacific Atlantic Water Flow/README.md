@@ -44,7 +44,7 @@ Constraints:<br>
 - m == heights.length
 - n == heights[r].length
 - 1 <= m, n <= 200
-- 0 <= heights[r][c] <= 10^5
+- 0 <= `heights[r][c]` <= 10^5
 
 
 =======================================================================================<br>
@@ -77,9 +77,6 @@ Constraints:<br>
 
     5) Complexity: Time complexity would be O(mn) where m is the number of rows and n is the number of columns, since each cell is processed once. The space complexity depends on the recursion depth, which can be up to O(mn) in the worst case (completely filled with land)
 
-2. Breadth-First Search (BFS)
-    - TODO
-
 
 ### Plan
 > - Sketch visualizations and write pseudocode
@@ -101,6 +98,7 @@ General Idea: To find cells that can simultaneously reach both the Pacific and A
     5) Identify Intersecting Cells:
         - Determine the intersection of `pacific_reachable` and `atlantic_reachable` sets to find cells that can reach both oceans
         - Convert this intersection into a list and return it as the result
+        
 2) Helper DFS Function:
 
     1) Base Case Check:

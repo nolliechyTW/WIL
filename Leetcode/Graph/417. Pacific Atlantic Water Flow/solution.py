@@ -12,7 +12,7 @@ class Solution:
             for (x, y) in directions: # Check all 4 directions
                 new_row, new_col = row + x, col + y
                 # Check if the new cell is within bounds
-                if new_row < 0 or new_row >= rows or new_col < 0 or new_col >= rows:
+                if not (0 <= new_row < rows and 0 <= new_col < cols):
                     continue
                 # Check that the new cell hasn't already been visited
                 if (new_row, new_col) in reachable:
@@ -25,10 +25,10 @@ class Solution:
                 dfs(new_row, new_col, reachable)
         
         # Loop through each cell adjacent to the oceans and start a DFS
-        for i in range(rows):
+        for i in range(rows): # Vertical Edges
             dfs(i, 0, pacific_reachable) # Left edge
             dfs(i, cols - 1, atlantic_reachable) # Right edge
-        for i in range(cols):
+        for i in range(cols): # Horizontal Edges
             dfs(0, i, pacific_reachable) # Top edge
             dfs(rows - 1, i, atlantic_reachable) # Bottom edge
         
