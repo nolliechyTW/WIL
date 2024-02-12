@@ -2,6 +2,7 @@
 class Solution:
     def backspaceCompare(self, s: str, t: str) -> bool:
         # Helper function to find the next valid character index
+        # stops iterating and returns the "next valid index" when it finds a character that is not erased by a backspace.
         def find_next_valid_char_index(string, index):
             backspace_count = 0  
             while index >= 0:  # Iterates backwards through the string, until the start is reached
