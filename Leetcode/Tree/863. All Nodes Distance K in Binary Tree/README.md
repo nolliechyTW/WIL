@@ -57,7 +57,7 @@ Constraints:<br>
 - The algorithm uses a queue to keep track of nodes to visit and their corresponding distance from the target node. Queues are a fundamental component for implementing BFS, allowing the algorithm to process nodes in a first-in, first-out (FIFO) order
 
 5. Set for Tracking Visited Nodes: 
-- A set named seen is used to track visited nodes to prevent revisiting and thus avoid infinite loops. This is a common pattern in graph traversal problems to ensure each node is processed exactly once
+- A set named `seen` is used to track visited nodes to prevent revisiting and thus avoid infinite loops. This is a common pattern in graph traversal problems to ensure each node is processed exactly once
 
 
 
@@ -65,7 +65,24 @@ Constraints:<br>
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: 
+General Idea: converting the binary tree into a graph representation and then performing a breadth-first search (BFS) from the target node to find all nodes that are k distance away
+
+1. Graph Representation: 
+- It starts by creating a graph (`self.graph`) representation of the tree. **In this graph, each node points to its adjacent nodes (parent, left child, and right child)**. This is achieved through the `build_graph` helper function, which recursively traverses the tree and adds each node's parent and children to the self.graph dictionary. **This dictionary is keyed by nodes, with each key's value being a list of adjacent nodes**
+
+2. Initializing Variables:
+- `seen` is a set used to keep track of visited nodes to avoid revisiting them during the BFS
+- `an`s is a list to store the values of nodes that are k distance away from the target node
+
+3. BFS Traversal:
+- The BFS starts with a queue initialized with the `target` node and a distance of `0`
+- The code then enters a loop that continues until the queue is empty.
+- It dequeues an element (node and its distance from the target), checks if the distance is equal to `k`, and if so, adds the node's value to the ans list
+- It then iterates through all neighbors (parent, left child, right child) of the current node. *For each neighbor not yet visited, it adds the neighbor to seen to mark it as visited and enqueues the neighbor with its distance from the target incremented by 1*
+
+4. Returning Result: 
+- Once the BFS is complete, the ans list, which now contains the values of all nodes that are exactly k distance away from the target node, is returned
+
 
 
 ### Implement
@@ -82,5 +99,9 @@ see solution.py
 
 Assume N represents the number nodes in tree.
 
-- Time Complexity: O(N)
-- Space Complexity: O(1), at most size = 26
+- Time Complexity: O(N); O(N) for building graph + O(N) for BFS traversal
+- Space Complexity: O(N)
+    - Graph Storage: The graph stores each node along with its adjacent nodes. Since each edge (parent-child relationship) will be stored twice (once from parent to child and once from child to parent), the space required for the graph is `O(2N)=O(N)`
+    - Queue for BFS: In the worst case, the queue used for BFS might need to store a level of the tree. In a balanced binary tree, this would be `O(N/2)` at the last level, which simplifies to O(N)
+    - Seen Set: The `seen` set could potentially hold all nodes in the tree if the BFS traverses the entire tree, requiring O(N) space
+    - Answer List: In the worst case, particularly when `k` is large enough to encompass many nodes or the entire tree, the answer list could include a significant portion of the nodes. In the worst-case scenario, this could also be O(N), though practically it's expected to be much less unless k is large relative to the tree size.
