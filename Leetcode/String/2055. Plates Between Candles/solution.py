@@ -1,40 +1,53 @@
+## prefix sum solution
 class Solution:
     def platesBetweenCandles(self, s: str, queries: List[List[int]]) -> List[int]:
-        # Precompute the prefix sums of candles and the nearest candle positions to the left and right
         n = len(s)
         prefix_sum = [0] * n
-        left_nearest_candle = [-1] * n
-        right_nearest_candle = [n] * n
+        candle_left = [-1] * n
+        candle_right = [n] * n
 
-        candle_count = 0
-        for i in range(n):
-            if s[i] == '|':
-                candle_count += 1
-                left_nearest_candle[i] = i
-            else:
-                if i > 0:
-                    left_nearest_candle[i] = left_nearest_candle[i - 1]
-            prefix_sum[i] = candle_count
+        # Precompute prefix sum and nearest left candle
+        prefix_sum[0] = 1 if s[0] == '*' else 0
+        candle_left[0] = 0 if s[0] == '|' else -1
+        for i in range(1, n):
+            prefix_sum[i] = prefix_sum[i - 1] + (1 if s[i] == '*' else 0)
+            candle_left[i] = i if s[i] == '|' else candle_left[i - 1]
 
-        for i in range(n - 1, -1, -1):
-            if s[i] == '|':
-                right_nearest_candle[i] = i
-            else:
-                if i < n - 1:
-                    right_nearest_candle[i] = right_nearest_candle[i + 1]
+        # Precompute nearest right candle
+        candle_right[n - 1] = n - 1 if s[n - 1] == '|' else n
+        for i in range(n - 2, -1, -1):
+            candle_right[i] = i if s[i] == '|' else candle_right[i + 1]
 
-        # Process each query
-        answer = []
-        for left, right in queries:
-            # Find the nearest candles to the left and right within the range
-            left_candle = right_nearest_candle[left]
-            right_candle = left_nearest_candle[right]
+        # Process queries
+        result = [0] * len(queries)
+        for i in range(len(queries)):
+            start = candle_right[queries[i][0]]
+            end = candle_left[queries[i][1]]
+            result[i] = 0 if start >= end else prefix_sum[end] - prefix_sum[start]
 
-            # Check if there is at least one candle to the left and right
-            if left_candle < right_candle:
-                plates_count = (right_candle - left_candle + 1) - (prefix_sum[right_candle] - prefix_sum[left_candle] + 1)
-                answer.append(plates_count)
-            else:
-                answer.append(0)
+        return result
 
-        return answer
+
+## binary search solution
+class Solution:
+    def platesBetweenCandles(self, s: str, queries: List[List[int]]) -> List[int]:
+        # Create a list of indices where candles are found
+        candle_indices = [i for i, char in enumerate(s) if char == '|']
+        
+        def find_plates(left: int, right: int) -> int:
+            # Use binary search to find the leftmost candle index greater than or equal to 'left'
+            left_idx = bisect.bisect_left(candle_indices, left)
+            # Use binary search to find the rightmost candle index less than or equal to 'right'
+            right_idx = bisect.bisect_right(candle_indices, right) - 1
+            
+            # If there are not enough candles to form a valid segment, return 0
+            if left_idx >= right_idx:
+                return 0
+            
+            # Calculate the total plates between the two nearest candles
+            return candle_indices[right_idx] - candle_indices[left_idx] - (right_idx - left_idx)
+        
+        # Process each query and calculate the number of plates between candles
+        return [find_plates(left, right) for left, right in queries]
+
+
