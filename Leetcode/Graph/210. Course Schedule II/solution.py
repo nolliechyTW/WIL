@@ -15,16 +15,13 @@ class Solution:
 
         res = []
         while queue:
-            ans = queue.popleft()
-            res.append(ans)
-            for dependency in graph[ans]:
+            course = queue.popleft()
+            res.append(course)
+            for dependency in graph[course]:
                 indegree[dependency] -= 1
                 if indegree[dependency] == 0:
                     queue.append(dependency)
         
-        if len(res) == numCourses:
-            return res
-        else:
-            return []
+        return res if len(res) == numCourses else [] # key 
 
 

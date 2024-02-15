@@ -17,9 +17,13 @@ class Solution:
         anagrams = defaultdict(list)
 
         for string in strs:
+            # Initialize a count list for all 26 letters of the alphabet
             count = [0] * 26
+            # Count the frequency of each letter in the string
             for char in string:
                 count[ord(char) - ord('a')] += 1
+            # Use the count list as a key for the anagrams.
+            # Convert the list to a tuple to make it hashable and use it as a dictionary key.
             key = tuple(count)
 
             # Append the string to the list corresponding to the key in the anagrams dictionary

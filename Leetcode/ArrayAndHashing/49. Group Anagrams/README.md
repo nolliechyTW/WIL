@@ -33,8 +33,10 @@ strs[i] consists of lowercase English letters.<br>
 > - Ask clarifying questions and use examples to understand what the interviewer wants out of this problem.
 > - Choose a “happy path” test input, different than the one provided, and a few edge case inputs. 
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
-1. Can the input array be empty?
+1. Can the input array be empty
+    - YES, the return ans will be `[[""]] ` in this case.
 2. Any requirement on time/space complexity?
+    - Can you do better than O(NLOGN)
 3. Is the array sorted? If not, is sorting a costly operation?
  
 ### Match
@@ -80,7 +82,7 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N is the length of strs and K is the maximum length of a string in strs.
+Assume `N` is the length of strs and `K` is the maximum length of a string in strs.
 
 for gerneral idea:
 - Time Complexity: O(NKlogK)

@@ -66,7 +66,7 @@ The BFS variant of topological sort (also known as `Kahn's algorithm`) is partic
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: first constructs a directed graph from the course prerequisites, then uses a queue to determine a valid order of course completion, returning an empty list if such an order is not possible.
+General Idea: first constructs a directed graph from the course prerequisites, then uses a queue to determine a valid order of course completion, **returning an empty list if such an order is not possible**.
 
 1) Initialize Data Structures:
     - `indegree`: An **array** to keep track of the number of prerequisites (inbound edges) for each course
@@ -82,8 +82,8 @@ General Idea: first constructs a directed graph from the course prerequisites, t
 
 4) Process the Queue:
     - While the `queue` is not empty, perform the following:
-        - Dequeue an element, say `ans`. Add `ans` to the result list `res`, representing that this course can be taken next.
-        - Iterate over all the courses dependent on `ans` (accessible from the `graph`). For each such course, decrement its indegree by 1, indicating that one of its prerequisites has been met.
+        - Dequeue an element, say `course`. Add `course` to the result list `res`, representing that this course can be taken next.
+        - Iterate over all the courses dependent on `course` (accessible from the `graph`). For each such course, decrement its indegree by 1, indicating that one of its prerequisites has been met.
         - If the indegree of any dependent course becomes `0`, enqueue it, as it is now ready to be taken.
 
 5) Check for Completion:
@@ -103,7 +103,7 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-V represents the number of vertices and E represents the number of edges.
+V represents the number of vertices(the number of courses) and E represents the number of edges(the number of prerequisites).
 
-- Time Complexity: O(V + E)
-- Space Complexity: O(V + E)
+- Time Complexity: O(V + E); as both the courses and their relationships (prerequisites) are processed once
+- Space Complexity: O(V + E); the graph uses O(V+E) space, as it stores a list of dependents for each course. In the worst case, it might store every prerequisite relationship
