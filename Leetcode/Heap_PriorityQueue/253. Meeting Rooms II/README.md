@@ -41,9 +41,9 @@ Constraints:<br>
 
 1. Heap <br>
 - Priority Queue for Dynamic Minimum:
-A heap, particularly a min-heap, is an excellent tool for keeping track of the meeting with the earliest end time. This is crucial in deciding whether a new meeting can be accommodated in the same room or if a new room is needed.<br>
+A heap, particularly a min-heap, is an excellent tool for **keeping track of the meeting with the earliest end time**. This is crucial in deciding whether a new meeting can be accommodated in the same room or if a new room is needed.<br>
 - Efficient Overlap Detection:
-The problem requires you to check for overlaps between meetings. By keeping meetings in a min-heap sorted by their end times, we can efficiently *compare the start time of a new meetin*g with the *earliest ending meeting*, which is always at the top of the heap.
+The problem requires you to check for overlaps between meetings. By keeping meetings in a min-heap sorted by their end times, we can efficiently *compare the start time of a new meeting* with the *earliest ending meeting*, which is always at the top of the heap.<br>
 
 
 ### Plan
@@ -86,7 +86,7 @@ see solution.py
 
 Assume N represents the number of intervals
 
-- Time Complexity: O(N log N)
+- Time Complexity: O(N log N) for sorted
 - Space Complexity: O(N), in the worst case, when all intervals overlap, the heap can contain all N intervals simultaneously
 
 <!-- 
