@@ -47,7 +47,7 @@ Constraints:<br>
 
 
 1)  Dynamic Programming and Memoization Approach
-    - A word is concatenated if at least one valid split exists where the prefix is a word in the list (or is itself concatenated) and the suffix is either a word in the list or can be further split into concatenated words. This characteristic allows for a DP approach, where the solution to the larger problem depends on the solutions to its subproblems
+    - **A word is concatenated if at least one valid split exists where the prefix is a word in the list (or is itself concatenated) and the suffix is either a word in the list or can be further split into concatenated words.** This characteristic allows for a DP approach, where the solution to the larger problem depends on the solutions to its subproblems
     - When checking if a word is concatenated, the same suffixes or prefixes may be checked multiple times for different words. Memoization stores these results, so they don't have to be recomputed
 
 
@@ -55,14 +55,14 @@ Constraints:<br>
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Determine which words in the input list can be formed by concatenating two or more other words from the same list. This is not about simple string concatenation; it involves partitioning the word into segments where each segment is a valid word in the list, and the whole constitutes the original word
+General Idea: Determine which words in the input list can be formed by concatenating two or more other words from the same list. This is not about simple string concatenation; it involves *partitioning* the word into segments where each segment is a valid word in the list, and the whole constitutes the original word
 
 1. Initialization:
 - Convert the list of `words` into a set (`setofWords`) for O(1) lookup times
 - Prepare an empty list (`ans`) to store the final list of concatenated words
 - Create a dictionary (`memo`) to **cache the results of sub-problems**
 
-2. Define a Recursive Function (dfs):
+2. Define a Recursive Function (**dfs**):
 - This function attempts to determine if a word can be considered a concatenated word by recursively checking if it can be split into a prefix and suffix where the prefix is a word in the list, and the suffix either is a word in the list or can be further split into concatenated words
 - For each word, it iterates through all possible splits (from the 1st character to the last), checks if the prefix is in the set of words, and then checks if the suffix is either in the set or can be split further into valid words (recursive call to dfs)
 - The result of each check (True if the word is a concatenated word, False otherwise) is stored in the `memo` dictionary to avoid recalculating for the same word segment

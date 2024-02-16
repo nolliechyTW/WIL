@@ -2,7 +2,7 @@ class Solution:
     def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:
         setofWords = set(words)
         ans = []
-        memo = {}  # Cache for memoization
+        memo = defaultdict()  # Cache for memoization
 
         def dfs(word):
             if word in memo:  # Check if result is already computed
@@ -18,7 +18,6 @@ class Solution:
             return False
 
         for word in words:
-            if word:  # Ensure the word is not empty to avoid false positives
-                if dfs(word):
-                    ans.append(word)
+            if dfs(word):
+                ans.append(word)
         return ans

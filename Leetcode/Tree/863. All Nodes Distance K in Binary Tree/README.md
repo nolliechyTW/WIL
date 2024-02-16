@@ -51,7 +51,7 @@ Constraints:<br>
 - The `build_graph` helper function uses DFS to traverse the tree and build the graph representation. DFS is a common technique for exploring all the nodes and edges in a graph or tree, ensuring that each connection (including parent-child and child-parent links) is represented
 
 3. Breadth-First Search (BFS) for *Level Traversal*: 
-- Once the graph is built, we use BFS starting from the target node to find all nodes that are k distance away. BFS is employed here because it explores neighbors of all nodes at the current depth before moving on to the nodes at the next depth level, making it ideal for level-by-level traversal to find nodes exactly k steps away
+- Once the graph is built, we use BFS starting from the target node to find all nodes that are k distance away. BFS is employed here because it explores neighbors of all nodes at the current depth before moving on to the nodes at the next depth level, making it ideal for **level-by-level** traversal to find nodes exactly k steps away
 
 4. Queue for BFS Implementation: 
 - The algorithm uses a queue to keep track of nodes to visit and their corresponding distance from the target node. Queues are a fundamental component for implementing BFS, allowing the algorithm to process nodes in a first-in, first-out (FIFO) order
@@ -72,7 +72,7 @@ General Idea: converting the binary tree into a graph representation and then pe
 
 2. Initializing Variables:
 - `seen` is a set used to keep track of visited nodes to avoid revisiting them during the BFS
-- `an`s is a list to store the values of nodes that are k distance away from the target node
+- `ans` is a list to store the values of nodes that are k distance away from the target node
 
 3. BFS Traversal:
 - The BFS starts with a queue initialized with the `target` node and a distance of `0`
