@@ -45,7 +45,7 @@ Constraints:<br>
 > - Choose a “happy path” test input, different than the one provided, and a few edge case inputs. 
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
 1. Is there a specific reason you want to solve this problem using counting sort instead of other sorting algorithms? 
-    - Using counting sort, we can access the elements in sorted order in linear time
+    - Using **counting sort,** we can access the elements in sorted order in linear time
 2. Any requirement on time/space complexity?
     - O(n) time complexity and O(1) space complexity
 3. Are there any constraints on the prices of the ice cream bars, such as if they can only be whole numbers or if there's a maximum price for any ice cream bar?

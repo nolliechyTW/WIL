@@ -1,7 +1,7 @@
 # Using counting sort
 class Solution:
     def maxIceCream(self, costs: List[int], coins: int) -> int:
-        n, icecreams = len(costs), 0
+        icecreams = 0
         m = max(costs)
 
         costsFrequency = [0] * (m + 1)
@@ -10,6 +10,7 @@ class Solution:
 
         for cost in range(1, m + 1):
             if not costsFrequency[cost]:
+            # equals to if freqMap[val] == 0:
                 continue
             if coins < cost:
                 break

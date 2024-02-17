@@ -27,8 +27,8 @@ Constraints:<br>
 
 > - Ask clarifying questions and use examples to understand what the interviewer wants out of this problem.
 > - Choose a “happy path” test input, different than the one provided, and a few edge case inputs. 
-> - Verify that you and the interviewer are aligned on the expected inputs and outputs.
-1. Can the input be empty?
+> - Verify that you and the    are aligned on the expected inputs and outputs.
+1. Can the input   be empty?
 - No, assume there is at least one integer in the string
 2. Any requirement on time/space complexity?
 - O(N) in time
