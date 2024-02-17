@@ -44,6 +44,11 @@ Constraints:<br>
     - O() time and O(1) space not including the resulting output array
 3. Are two strings guaranteed to have a same size? 
     - Yes
+4. Are the strings s and t composed of ASCII characters only, or do we need to account for Unicode characters as well?
+    - ascci characters only 
+5. Should the isomorphism check be case-sensitive?
+    - Yes, upper and lower case characters should be trated as distinct
+
  
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
@@ -68,7 +73,6 @@ General Idea: maintain two mappings: one from characters in s to characters in t
         - If the current characters do not conform to the previously established mappings, the strings are not isomorphic.
 
 3) Return True if Isomorphic: If the algorithm completes without finding any inconsistencies in the mappings, conclude that the strings are isomorphic. <br>
-
 
 
 ### Implement
