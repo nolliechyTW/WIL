@@ -29,7 +29,7 @@ Constraints:<br>
 1. Can the input be empty?
     - No
 2. Any requirement on time/space complexity?
-    - O(n) time and O(1) space will do
+    - O(n) time and O(min(M, N)) space will do
 3. Are the characters case-sensitive? For example, is 'a' different from 'A'?
     - Yes
 
