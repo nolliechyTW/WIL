@@ -6,7 +6,7 @@ class Solution:
         
         for log in logs:
             # Check if the log is a digit-log or a letter-log
-            if log.split()[1].isdigit(): # log.split()[-1].isdigit()
+            if log.split()[-1].isdigit(): # log.split()[1].isdigit() also works
                 digit_logs.append(log)
             else:
                 letter_logs.append(log)
