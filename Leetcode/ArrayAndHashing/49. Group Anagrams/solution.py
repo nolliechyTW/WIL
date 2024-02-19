@@ -10,7 +10,7 @@ class Solution:
         return list(group_by_char.values())
     
 
-# categorized by count (better) 
+# categorized by count (better) - TIME O(N) - SPACE O(N)
 
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:

@@ -11,3 +11,6 @@ class Solution:
 
         # The root of the heap is the kth largest element
         return heap[0]
+    
+    
+# better solution - counting sort 

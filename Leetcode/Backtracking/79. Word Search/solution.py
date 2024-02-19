@@ -6,13 +6,13 @@ class Solution:
         if rows * cols < len(word):
             return False
 
-        def dfs(i, j, k):
+        def dfs(i, j, k): # k is the index of the current character in the word
             # Boundary check and character match check
             if 0 <= i < rows and 0 <= j < cols and board[i][j] == word[k]:
                 # Check if we have found the last character of the word
                 if k == len(word) - 1:
                     return True
-
+ 
                 # Temporarily mark the cell as visited
                 temp, board[i][j] = board[i][j], '*'
 

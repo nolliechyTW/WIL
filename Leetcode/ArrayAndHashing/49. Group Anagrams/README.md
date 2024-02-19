@@ -23,9 +23,9 @@ Input: strs = ["a"]<br>
 Output: [["a"]]<br>
 
 Constraints:<br>
-1 <= strs.length <= 10^4<br>
-0 <= strs[i].length <= 100<br>
-strs[i] consists of lowercase English letters.<br>
+- 1 <= strs.length <= 10^4<br>
+- 0 <= strs[i].length <= 100<br>
+- strs[i] consists of lowercase English letters<br>
 =======================================================================================<br>
 ### UMPIRE Method:
 #### Understand
@@ -38,13 +38,16 @@ strs[i] consists of lowercase English letters.<br>
 2. Any requirement on time/space complexity?
     - Can you do better than O(NLOGN)
 3. Is the array sorted? If not, is sorting a costly operation?
+    - Can you do better than O(NLOGN)
+4. Only ascii characters?
+    - The string only contains lowercase letter
  
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 
 
 1. Sort <br>
-This can work if the given string in the array can be sorted. We can sort the character in the string and compare each of them since **two strings are anagrams if and only if their sorted strings are equal**.
+This can work if the given string in the array can be sorted. We can sort the character in the string and compare each of them since **two strings are anagrams if and only if their sorted strings are equal**. (though time complexity will be O(NlogN) if we sort it)
 
 2. Storing the elements of the array in a HashMap<br>
 As we sort the string, we can maintain a map `"sorted string": [list of strings having the same key]`.
@@ -63,7 +66,7 @@ General Idea: Create a map to associate sorted strings (keys) with the original 
 - Else, create a new key-value pair
 3. Return the values as a list with `.value()`, converting them with `list()`
 
-Improved Gerneral Idea: Traverse the strings and use a hashtable to store different anagram groups. Use the **character count** as the key of each group. (as image.png shown)
+**Improved Gerneral Idea**: Traverse the strings and use a hashtable to store different anagram groups. Use the **character count** as the key of each group. (as image.png shown)
 ![Alt text](./image.png) <br>
 - For each string, we use an array `count` to store the occurence and number of charaters. since the string only contains lowercase letter, the size of the array is 26 and each index is mapped to a lowercase chararter
 - Traverse the string, and generate another string based on the `count` array; put it as a key into the hash table along with the corresponding value (as image-1.png shown)

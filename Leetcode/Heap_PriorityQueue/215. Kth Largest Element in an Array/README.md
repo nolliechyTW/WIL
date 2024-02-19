@@ -34,7 +34,7 @@ Constraints:<br>
 1. Will k be smaller or equal to the length of nums? 
     - Yes
 2. Any requirement on time/space complexity? 
-    - You must write a solution in O(n) time complexity and O(n) space complexity
+    - a solution in O(n* logn) time complexity is ok but can you do better?
 3. Should we assume the array is unsorted to begin with?
     - Yes
 

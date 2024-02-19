@@ -86,9 +86,7 @@ Verify if the word's length exceeds the total number of cells in the grid.
     - Iterate over the grid, using the helper function to check for the word starting at each cell
     - If a match is found at any cell, return `true`
     - If all cells have been checked without finding the word, conclude that the word cannot be formed and return `false`
-
-
-
+    
 
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)

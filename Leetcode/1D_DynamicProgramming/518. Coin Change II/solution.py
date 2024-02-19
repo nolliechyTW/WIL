@@ -18,3 +18,8 @@ class Solution:
 
         # After processing all coins, dp[amount] will contain the total number of ways to make change for the target amount.
         return dp[amount]
+
+# It's like saying, "If I know how to make 5 dollars, 
+# and I have a 2 dollar coin, 
+# now I can also make 7 dollars by adding this 2 dollar coin
+# to each way I had of making 5 dollars."

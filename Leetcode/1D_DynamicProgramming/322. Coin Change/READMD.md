@@ -2,6 +2,7 @@
 🔗  Link: [Coin Change](https://leetcode.com/problems/coin-change/description/)<br>
 💡 Difficulty: Medium<br>
 🛠️ Topics: Array, DP<br>
+🎈very good explaination: https://www.youtube.com/watch?v=jgiZlGzXMBw
 
 =======================================================================================<br>
 You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.<br>
