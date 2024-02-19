@@ -28,7 +28,7 @@ Constraints:<br>
 > - Ask clarifying questions and use examples to understand what the interviewer wants out of this problem.
 > - Choose a “happy path” test input, different than the one provided, and a few edge case inputs. 
 > - Verify that you and the    are aligned on the expected inputs and outputs.
-1. Can the input   be empty?
+1. Can the input be empty?
 - No, assume there is at least one integer in the string
 2. Any requirement on time/space complexity?
 - O(N) in time
@@ -43,10 +43,8 @@ Constraints:<br>
 - PrefixSum:<br>
 1) A prefix sum is a running total of the sums of elements in an array up to a certain index. For any array nums, the prefix sum up to index `i` is the sum of all elements from `nums[0]` to `nums[i]`. This concept is crucial because it allows for the calculation of the sum of any subarray in constant time, given the prefix sums
 
-2) The sum of a subarray from index `i` to `j` can be calculated as `prefixSum[j] - prefixSum[i-1]`. This is because `prefixSum[j]` includes all elements up to `j`, and subtracting `prefixSum[i-1]` removes the sum of elements before `i`, leaving just the sum of the subarray
-
 - Hashmap<br>
-1) As we calculate prefix sums while iterating through the array, we can store each prefix sum in a hashmap. The key in this hashmap is the prefix sum value, and the value is the frequency of that prefix sum occurring up to the current point in the iteration
+1) As we calculate prefix sums while iterating through the array, we can store each prefix sum in a hashmap. **The key in this hashmap is the prefix sum value, and the value is the frequency of that prefix sum occurring up to the current point in the iteration**
 2) To find a subarray that sums to `k`, we look for situations where `currentPrefixSum - k` is a prefix sum that has occurred before. **If `currentPrefixSum - k` exists in our hashmap, it means there is a previous point in the array where the sum of all elements up to that point is `currentPrefixSum - k`.** The subarray between that point and the current index sums to k
 
 
@@ -63,10 +61,10 @@ General Idea:
 
 2) Iteration and Updating: 
 - As we iterate through the array, we update the current prefix sum and check if `currentPrefixSum - k` exists in the hashmap. 
-    - If it does, you add its frequency to the result. This step directly uses the hashmap to find the number of preceding subarrays that, when added to the current segment, sum to k
+    - If it does, we add its frequency to the result. This step directly uses the hashmap to find the number of preceding subarrays that, when added to the current segment, sum to k
 
 3) HashMap Update: 
-- After checking for `currentPrefixSum - k`, you update the hashmap with the current prefix sum, either by initializing its frequency to 1 if it's not already present or incrementing its existing frequency
+- After checking for `currentPrefixSum - k`, we update the hashmap with the current prefix sum, either by initializing its frequency to 1 if it's not already present or incrementing its existing frequency
 -  This update step is crucial for ensuring that all subsequent elements can check against all possible prefix sums seen so far
 
 ### Implement

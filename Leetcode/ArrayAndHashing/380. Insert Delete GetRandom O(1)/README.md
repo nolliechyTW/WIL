@@ -64,8 +64,8 @@ The map (dictionary) keeps track of the indices of the elements in the list, all
 General Idea: 
 
 1) Initial Setup
-- `myMap`: A dictionary (or **map**) that maps each value inserted into the set to its index in myList. This allows for O(1) lookup time to check if a value exists in the set and to find its index if it does
-- `myList`: A **list** that stores all the values in the set. This structure enables O(1) time complexity when adding a new value (by appending to the end) and when retrieving a random value (by using random selection)
+- `myMap`: A dictionary (or map) that **maps each value inserted into the set to its index in myList**. This allows for O(1) lookup time to check if a value exists in the set and to find its index if it does
+- `myList`: A **list** that stores all the values in the set. This structure enables O(1) time complexity when adding a new value (by appending to the end) and when **retrieving a random value** (by using random selection)
 
 2) Insertion (insert method)
 - When inserting a new value `val`, first check if it exists in myMap. If it does, return `False` since duplicates are not allowed

@@ -65,7 +65,7 @@ General Idea:
 - The stack is particularly useful for efficiently finding the next greater element for each node, as it allows for *quick access to indices* that are pending examination for a next greater element.
 
 4. Iterate Through the Array
-- The function iterates through the array representation of the linked list. 
+- The function `enumerate()` iterates through the array representation of the linked list. 
 - For each element, it checks if the stack is not empty and if the current element's value is greater than the value at the index located at the top of the stack. 
 - If both conditions are true, it means the function has found a next greater element for the node corresponding to the top index in the stack.
 

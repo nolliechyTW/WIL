@@ -33,9 +33,9 @@ Constraints:<br>
 > - Ask clarifying questions and use examples to understand what the interviewer wants out of this problem.
 > - Choose a “happy path” test input, different than the one provided, and a few edge case inputs. 
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
-1. Can the input array be empty? 
+1. Can the input string be empty? 
 2. Any requirement on time/space complexity? 
-- Can you solve it in `O(n)` time and `O(1)` space?
+- Can you solve it in `O(n)` time and **`O(1)`** space?
 
 
 ### Match
