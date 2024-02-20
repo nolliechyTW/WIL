@@ -49,7 +49,7 @@ Constraints:<br>
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 
 1. Hashmap
-use heHashmapre to keep track of the already copied nodes and to quickly find the corresponding new node for setting the next and random pointers without needing to traverse the new list each time
+use Hashmap to keep track of the already copied nodes and to quickly find the corresponding new node for setting the next and random pointers without needing to traverse the new list each time
 
 
 ### Plan

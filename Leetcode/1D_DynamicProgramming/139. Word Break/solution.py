@@ -24,3 +24,28 @@ class Solution:
         # Return the last element in dp array which represents whether the whole string 
         # 's' can be segmented into a sequence of dictionary words.
         return dp[-1]
+
+# alternative solution using dfs + memoization
+# time complexity: O(n^2)
+# space complexity: O(n)
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        wordSet = set(wordDict)  # Convert to set for O(1) lookups
+        memo = {}  # Dictionary to remember results of previous calls
+
+        def dfs(word):
+            if word in memo:  # Check if result is already computed
+                return memo[word]
+            if word in wordSet:  # Base case for optimization
+                memo[word] = True
+                return True
+            for i in range(1, len(word)):  # Start from 1 to avoid empty string
+                prefix = word[:i]
+                suffix = word[i:]
+                if prefix in wordSet and (suffix in wordSet or dfs(suffix)):
+                    memo[word] = True
+                    return True
+            memo[word] = False
+            return False
+
+        return dfs(s)
