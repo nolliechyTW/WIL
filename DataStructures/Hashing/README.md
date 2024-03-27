@@ -15,17 +15,19 @@ Hashing is a storage and retrival technique.
 
 - Two Types of Hashing
     - Open hashing and closed hashing
+        - Open hashing, also known as separate chaining, uses linked lists (or other data structures) at each slot to store multiple elements with the same hash, allowing for easy reference to each item. 
+        - Closed hashing, also known as open addressing, involves finding alternative slots within the hash table through a procedural sequence to resolve collisions, maintaining a specific order of insertion and search.
 
 - Hashing with Collision Resolution Techniques
     - When implementing a hash table, *collisions* occur when *two keys hash to the same index or "home slot"*. Efficiently resolving these collisions is crucial to maintaining the performance of the hash table. Here’s a streamlined approach:
-        1. Compute the Home Slot:
+        1. Compute the **Home Slot**:
             The home slot for a key `i` is determined using a hash function `h`, defined as `h(i) = i % m`, where `m` is the size of the hash table. This function maps each key to a specific index in the table.
-        2. Probe Sequence for Collision Resolution:
+        2. **Probe Sequence** for Collision Resolution:
             If the calculated home slot is already occupied, indicating a collision, a probe sequence is initiated to find an alternate slot. The position for the next probe, `pos`, is calculated as `pos = (h(k) + P(k, i)) % m`, where:
                 - `h(k)` is the original hash value of the key k.
                 - `P(k, i)` is the probe function that provides the offset from the home slot, dependent on the probing iteration `i` and possibly the key `k`.
                 - `% m` ensures that the probing wraps around the hash table if it exceeds the table size.
-
+    - All the records hashing to the same home slot will have the same probe sequence resulting in primary clustering. 
 
 ## Open Hashing
 - The slot in the HT contains reference to a Linked List
@@ -137,6 +139,7 @@ Two types of closed hashing:
 Here are the key concepts involved in closed hashing:
 
 1. Linear Probing: When a collision occurs, linear probing looks for the next available slot in the hash table by incrementally checking subsequent positions (i.e., index + 1, index + 2, ...) until an empty slot is found. This method is simple but can lead to "clustering," where a group of occupied slots gets clustered together, which can adversely affect performance.
+    - This method directly leads to a phenomenon known as *primary clustering*. Primary clustering occurs because once a cluster of occupied slots forms, the likelihood that a new element will be added to this cluster increases, since the search for an empty slot will start at the beginning of the cluster and move linearly through it. This clustering effect can significantly affect the performance of the hash table, as it increases the average search time for elements.
 
 2. Quadratic Probing: This is a variant that reduces clustering by using a quadratic function to calculate the interval between probes, rather than incrementing by one each time. For example, if the first hash index is i, subsequent indices might be i+1², i+2², i+3², and so on, until an empty slot is found.
 
