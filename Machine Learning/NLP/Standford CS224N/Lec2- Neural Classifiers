@@ -1,0 +1,65 @@
+### Course Introduction
+- https://youtu.be/gqaHkPEZAew?si=eD0KpJYDR4qQ8T_r
+- **Main Goal**: By the end of the class, students should feel confident in understanding word embeddings papers like Word2Vec, GloVe, and Sanjiv Aurora's work.
+- **Topics Covered**:
+  1. Word vectors and their training.
+  2. Introduction to word senses.
+  3. Neural network classifiers.
+
+### Word Vectors
+- **Word2Vec Model**:<br>
+  ![alt text](image-1.png) <br>
+  - Starts with random word vectors.
+  - Iterates through a large text corpus to predict context words around a center word using probability distributions.
+  - The model parameters are the word vectors themselves, and their dot products define the likelihood of context word occurrence.
+  - Uses the softmax function to convert dot product scores into probabilities.
+  - Treated as a "Bag of Words" model in NLP, which doesn't account for word order.
+
+- **Learning Process**:
+  - The Word2Vec model places semantically similar words close to each other in high-dimensional vector space.
+    ![alt text](image-5.png)<br>
+  - Gradient Descent is used for learning word vectors by minimizing the loss function.
+  - **Stochastic Gradient Descent (SGD)**:
+    ![alt text](image-6.png)<br>
+    - A more efficient alternative to regular Gradient Descent.
+    - Computes gradient updates on small batches rather than the entire corpus.
+    - Leads to faster convergence and often better performance due to noise-induced exploration.
+
+### Neural Network Classifiers and Optimization
+- **Word2Vec Variants**:
+  - Two main variants: **Skip-gram** (predicts context words from a center word) and **Continuous Bag of Words (CBOW)** (predicts the center word from context words).
+- **Negative Sampling**:
+  - An optimization technique used to avoid computing full softmax for large vocabularies.
+  - Replaces softmax with logistic regression models, making it more efficient.
+  - Uses sampled negative examples to contrast with actual context words.
+  - Adjusts the frequency distribution to favor less frequent words using a power function.
+  ![alt text](image-7.png)<br>
+
+### Co-occurrence Matrix and Alternatives
+- **Co-occurrence Matrices**:
+  - Alternative to iterative algorithms like Word2Vec.
+  - Constructs word vectors based on the frequency of word co-occurrences within a defined window size.
+  ![alt text](image-8.png)<br>
+  - Two methods: using a small window size (like Word2Vec) or larger document-level windows.
+- **Limitations of Co-occurrence Matrices**:
+  - High dimensionality and sparsity, making them less effective than dense, low-dimensional vectors.
+- **Dimensionality Reduction**:
+  - Techniques like **Singular Value Decomposition (SVD)** reduce the dimensionality of co-occurrence matrices.
+  ![alt text](image-9.png)<br>
+  - Scaled counts or using log values can yield better word vectors than raw counts.
+
+### GloVe Model
+![alt text](image-10.png)<br>
+- **GloVe (Global Vectors for Word Representation)**:
+  - Bridges the gap between co-occurrence matrix-based methods and neural network-based models.
+  - Uses a log-bilinear model to approximate the logarithm of word co-occurrence probabilities.
+  - Introduces bias terms and scales high-frequency word pairs for better performance.
+  - Efficient for training on large corpora and yields good results on word similarity tasks and analogies.
+  ![alt text](image-11.png)<br>
+
+### Evaluation of Word Vectors
+- **Intrinsic vs. Extrinsic Evaluation**:
+  ![alt text](image-12.png)<br>
+  - **Intrinsic Evaluation**: Directly measures the quality of word vectors (e.g., word analogies, similarity tasks).
+  ![alt text](image-13.png)<br>
+  - **Extrinsic Evaluation**: Assesses the impact of word vectors on end-user tasks (e.g., named entity recognition).

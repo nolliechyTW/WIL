@@ -28,7 +28,7 @@
         - Every word in a fixed vocabulary is represented by a vector
         - Go through each position t in the text, which has a center word c and context (“outside”) words o
         - Use the similarity of the word vectors for c and o to calculate the probability of o given c (or vice versa)
-        - Keep adjusting the word vectors to maximize this probability
+        - Keep adjusting the word vectors to maximize this probability<br>
         ![alt text](image-1.png)
 
 ### Building Word Vectors with Word2Vec
