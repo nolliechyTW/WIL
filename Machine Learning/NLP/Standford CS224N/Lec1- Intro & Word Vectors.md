@@ -1,4 +1,5 @@
 ### Course Introduction
+- https://youtu.be/rmVRLeJRkl4?si=UGZcRJ9rUpjz6BrU
 - **Instructor and Course Overview**: Christopher Manning introduces Stanford CS224n, focusing on Natural Language Processing (NLP) with deep learning. The class covers NLP basics, the application of deep learning methods, and the creation of NLP systems using PyTorch.
 - **Lecture Focus**: The first lecture aims to provide an understanding of human language, word meaning, and the Word2Vec algorithm. Key concepts include calculating gradients for objective functions, basic optimization, and understanding the effectiveness of deep learning in representing word meanings.
 
@@ -33,7 +34,9 @@
 ### Building Word Vectors with Word2Vec
 - **Objective**: The goal is to adjust word vectors to maximize the probability of the actual context words given a center word. This is done through optimization techniques like gradient descent.
 - **Softmax Function**: The softmax function is used to convert raw scores (dot products between word vectors) into probabilities. The objective function is the negative log likelihood of these probabilities, which is minimized using gradient-based optimization.
-![alt text](image-2.png)
+![alt text](image-2.png)<br>
+![alt text](image-3.png)<br>
+![alt text](image-4.png)
 
 ### Key Observations with Word Embeddings
 - **Semantic Clusters**: When visualizing word embeddings in a 2D space, semantically similar words cluster together (e.g., countries, verbs, and nationalities), showing the effectiveness of the distributional approach in capturing meaning.
