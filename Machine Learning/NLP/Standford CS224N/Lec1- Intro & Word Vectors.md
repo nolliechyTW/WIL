@@ -20,7 +20,7 @@
 - **Problem with Discrete Representations**: Traditional NLP models treat words as discrete symbols (one-hot vectors), which fails to capture relationships or similarities between words. For example, "motel" and "hotel" are represented as entirely unrelated symbols.
 
 ### Introduction to Word Vectors (Word Embeddings)
-- **Distributional Semantics**: Instead of relying on static word definitions, deep learning models use distributional semantics, which defines a word's meaning by the words that frequently appear near it in text. This idea, summarized by J.R. Firth as "You shall know a word by the company it keeps," allows for a more dynamic and context-based understanding of meaning.
+- **Distributional Semantics**: Instead of relying on static word definitions, deep learning models use distributional semantics, which defines a word's meaning by the words that frequently appear near it in text. This idea, summarized by J.R. Firth as "You shall know a word by the company it keeps," allows for a more dynamic and context-based understanding of meaning.<br>
 ![alt text](image.png)
 - **Word2Vec Algorithm**: Introduced by Tomas Mikolov and colleagues in 2013, Word2Vec is a popular method for learning word vectors. The algorithm uses a large corpus of text to learn dense, real-valued vectors that represent words. These vectors capture semantic meaning by predicting the probability of context words given a center word.
     - **Basic idea**:   
