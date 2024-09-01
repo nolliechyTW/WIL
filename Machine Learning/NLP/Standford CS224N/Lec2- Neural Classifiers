@@ -63,3 +63,20 @@
   - **Intrinsic Evaluation**: Directly measures the quality of word vectors (e.g., word analogies, similarity tasks).
   ![alt text](image-13.png)<br>
   - **Extrinsic Evaluation**: Assesses the impact of word vectors on end-user tasks (e.g., named entity recognition).
+
+- **Word Vector Analogy Tasks**:
+  - Measures a model's ability to solve analogy problems, such as "man is to woman as king is to queen."
+- **Human Judgment of Word Similarity**:
+  - Models are evaluated based on their correlation with human-rated word similarity scores.
+
+### Word Senses and Vectors
+- **Word Sense Disambiguation**:
+  - The challenge of representing words with multiple meanings (e.g., "pike" as a weapon, fish, or road).
+  - One approach is to have separate vectors for different word senses, but this is complex and not commonly used.
+- **Superposition of Word Senses**:
+  - Most models use a single vector that is a weighted average of all senses based on their frequency of usage.
+  - This "average vector" can still be effective for capturing word similarities in different contexts.
+
+### Advanced Insights
+- **Sparse Coding in High-Dimensional Spaces**:
+  - Research by Sanjiv Aurora and others demonstrated that word vectors, even when they represent multiple senses, can be decomposed into their constituent sense vectors in high-dimensional space due to their sparsity properties.
