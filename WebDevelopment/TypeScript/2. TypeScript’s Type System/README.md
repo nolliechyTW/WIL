@@ -130,6 +130,45 @@
     ```
 
 ## Prefer Type Annotations to Type Assertions
+- TypeScript seems to have two ways of assigning a value to a variable and giving it a type:
+    ```
+    interface Person { name: string };
+
+    const alice: Person = { name: 'Alice' };
+    //    ^? const alice: Person
+    const bob = { name: 'Bob' } as Person;
+    //    ^? const bob: Person
+    ```
+    - The first (alice: Person) adds a type annotation to the variable and ensures that the value conforms to the type.
+    - The latter (as Person) performs a type assertion. This tells TypeScript that, despite the type it inferred, you know better and would like the type to be Person.
+- In general, you should prefer **type annotations** to type assertions since the type annotation verifies that the value conforms to the interface. E.g.
+    ```
+    const alice: Person = {};
+    //    ~~~~~ Property 'name' is missing in type '{}' but required in type 'Person'
+    const bob = {} as Person;  // No error
+    ```
+- It can be tricky to use a type annotation with arrow functions. E.g.
+    ```
+    const people = ['alice', 'bob', 'jan'].map(
+        (name): Person => ({name})
+    ); // Type is Person[]
+
+    // result
+    [
+        { name: 'alice' },
+        { name: 'bob' },
+        { name: 'jan' }
+    ]
+    ```
+- When should you use a type assertion? Type assertions make the most sense when you truly do know more about a type than TypeScript does.
+    - When you use a type assertion, it’s a good idea to include an explanation of why it’s valid in a comment.
+    - Another case to use type assertion is when you want to remove `null` from a type. As a suffix, **!** is interpreted as a type assertion that the value is non-null.E.g.
+        ```
+        const el = document.getElementById('foo')!;
+        //    ^? const el: HTMLElement
+        ```
+            -
+
 ## Avoid Object Wrapper Types (String, Number, Boolean, Symbol, BigInt)
 ## Distinguish Excess Property Checking from Type Checking
 ## Apply Types to Entire Function Expressions When Possible
