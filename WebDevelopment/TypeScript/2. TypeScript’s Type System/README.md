@@ -162,15 +162,35 @@
     ```
 - When should you use a type assertion? Type assertions make the most sense when you truly do know more about a type than TypeScript does.
     - When you use a type assertion, it’s a good idea to include an explanation of why it’s valid in a comment.
-    - Another case to use type assertion is when you want to remove `null` from a type. As a suffix, **!** is interpreted as a type assertion that the value is non-null.E.g.
+    - Another case to use type assertion is when you want to remove `null` from a type. As a suffix, **!** is interpreted as a type assertion that the value is non-null. E.g.
         ```
         const el = document.getElementById('foo')!;
         //    ^? const el: HTMLElement
         ```
-            -
+        - **!** is erased during compilation, so you should only use it if you have information that the type checker lacks and can ensure that the value is non-null. *If you can’t, you should use a conditional to check for the null case*.
 
 ## Avoid Object Wrapper Types (String, Number, Boolean, Symbol, BigInt)
+- Primitives(`strings`, `numbers`, `booleans`, `null`, `undefined`, `symbol`, and `bigint`) are distinguished from objects by being immutable and not having methods.
+    - You might object that strings do have methods: `> 'primitive'.charAt(3)`, but this is because JavaScript also defines a String object type that has methods.
+       - These comparisons are `false`:
+        1.	`"hello" === new String("hello")`:
+	        - This comparison is `false` because "hello" is a primitive string, while `new String("hello")` creates a string object. Since they are of different types (primitive vs. object), the strict equality operator (===) returns false.
+	    2.	`new String("hello") === new String("hello")`:
+	        - This is `false` because each new String("hello") creates a new string object with a unique reference in memory. Even though they contain the same value, they are different objects with different references, so the strict equality operator (===) considers them unequal.
+- TypeScript models this distinction by having distinct types for the primitives and their object wrappers:
+    - string and String
+    - number and Number
+    - boolean and Boolean
+    - symbol and Symbol
+    - bigint and BigInt
+- If you use `typescript-eslint` in your project, the `ban-types` rule prohibits the use of object wrapper types. This is enabled with the `@typescript-eslint/recommended` configuration.
+- Avoid instantiating object wrapper types or using them directly, with the exception of `Symbol` and `BigInt`.
+
 ## Distinguish Excess Property Checking from Type Checking
+- When you assign an object literal to a variable with a known type or pass it as an argument to a function, it undergoes excess property checking.
+- To avoid errors that structural typing might miss (such as typos or unintentionally added properties), TypeScript performs excess property checking when object literals are directly assigned, ensuring that the object does not contain unknown properties.​
+- Be aware of the limits of excess property checking: introducing an intermediate variable will remove these checks.
+
 ## Apply Types to Entire Function Expressions When Possible
 ## Know the Differences Between `type` and `interface`
 ## Use `readonly` to Avoid Errors Associated with Mutation
