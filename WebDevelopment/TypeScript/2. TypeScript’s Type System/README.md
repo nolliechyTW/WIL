@@ -29,12 +29,12 @@
     }
     interface Lifespan {
         birth: Date;
-        death?: Date;
+        death: Date;
     }
     type PersonSpan = Person & Lifespan;
     ```
-    - Types as Sets of Values: Imagine each type as a set of possible values rather than just a collection of properties. For example, a type `Person` represents all values that have a name property of type string.
-    - Intersection of Types: When you use the & operator between two types, it creates a new type that represents the intersection of the sets of values of those types. This means that the new type (`PersonSpan` in this case) includes values that satisfy both original types (`Person` and `Lifespan`).
+    - Types as Sets of Values: Imagine each type as a set of possible values rather than just a collection of properties. For example, a type `Person` represents all values that have a `name` property of type string.
+    - Intersection of Types: When you use the `&` operator between two types, it creates a new type that represents the intersection of the sets of values of those types. This means that the new type (`PersonSpan` in this case) includes values that satisfy both original types (`Person` and `Lifespan`).
     - Misconception about Intersection: Initially, you might think that `Person` & `Lifespan` results in an empty set because the interfaces `Person` and `Lifespan` have no overlapping properties. However, type operations consider the set of values rather than the specific properties.
         - So a value that has the properties of both `Person` and `Lifespan` will belong to the intersection type:
             ```
@@ -52,7 +52,7 @@
         }
         interface PersonSpan extends Person {
             birth: Date;
-            death?: Date;
+            death: Date;
         }
         ```
 - An object is considered to belong to a type as long as it has at least the required properties specified by that type. For example, 
