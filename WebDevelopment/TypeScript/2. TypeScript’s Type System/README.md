@@ -188,10 +188,43 @@
 
 ## Distinguish Excess Property Checking from Type Checking
 - When you assign an object literal to a variable with a known type or pass it as an argument to a function, it undergoes excess property checking.
-- To avoid errors that structural typing might miss (such as typos or unintentionally added properties), TypeScript performs excess property checking when object literals are directly assigned, ensuring that the object does not contain unknown properties.​
-- Be aware of the limits of excess property checking: introducing an intermediate variable will remove these checks.
+- To avoid errors that structural typing might miss (such as typos or unintentionally added properties), TypeScript performs excess property checking when object literals are directly assigned, ensuring that the object does not contain unknown properties.​ E.g.
+    ```
+    interface Room {
+    numDoors: number;
+    ceilingHeightFt: number;
+    }
+    const r: Room = {
+    numDoors: 1,
+    ceilingHeightFt: 10,
+    elephant: 'present',
+    // ~~~~~~~ Object literal may only specify known properties,
+    //         and 'elephant' does not exist in type 'Room'
+    };
+    ```
+- Be aware of the limits of excess property checking: introducing an intermediate variable will remove these checks. E.g.
+    ```
+    const obj = {
+    numDoors: 1,
+    ceilingHeightFt: 10,
+    elephant: 'present',
+    };
+    const r: Room = obj;  // OK
+    ```
 
 ## Apply Types to Entire Function Expressions When Possible
+- JavaScript (and TypeScript) distinguishes between a function statement and a function expression:
+    ```
+    function rollDice1(sides: number): number { /* ... */ }  // Statement
+    const rollDice2 = function(sides: number): number { /* ... */ };  // Expression
+    const rollDice3 = (sides: number): number => { /* ... */ };  // Also expression
+    ```
+- An advantage of function expressions in TypeScript is that you can apply a type declaration to the entire function at once, rather than specifying the types of the parameters and return type individually:
+    ```
+    type DiceRollFn = (sides: number) => number;
+    const rollDice: DiceRollFn = sides => { /* ... */ };
+    ```
+If you mouse over sides in your editor, you’ll see that TypeScript knows its type is number. The function type doesn’t provide much value in such a short example, but the technique does open up a number of possibilities.
 ## Know the Differences Between `type` and `interface`
 ## Use `readonly` to Avoid Errors Associated with Mutation
 ## Use Type Operations and Generic Types to Avoid Repeating Yourself
