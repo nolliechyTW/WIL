@@ -224,7 +224,16 @@
     type DiceRollFn = (sides: number) => number;
     const rollDice: DiceRollFn = sides => { /* ... */ };
     ```
-If you mouse over sides in your editor, you’ll see that TypeScript knows its type is number. The function type doesn’t provide much value in such a short example, but the technique does open up a number of possibilities.
+    - If you mouse over `sides` in your editor, you’ll see that TypeScript knows its type is `number`. 
+- One benefit of this is to reduce repetition. E.g.
+    ```
+    type BinaryFn = (a: number, b: number) => number;
+    const add: BinaryFn = (a, b) => a + b;
+    const sub: BinaryFn = (a, b) => a - b;
+    const mul: BinaryFn = (a, b) => a * b;
+    const div: BinaryFn = (a, b) => a / b;
+    ```
+
 ## Know the Differences Between `type` and `interface`
 ## Use `readonly` to Avoid Errors Associated with Mutation
 ## Use Type Operations and Generic Types to Avoid Repeating Yourself
