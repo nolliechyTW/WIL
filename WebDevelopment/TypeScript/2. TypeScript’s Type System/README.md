@@ -79,7 +79,7 @@
     const v2 = 123;
     ```
 - Types are erased during compilation, so if a symbol disappears then it was in type space. For example, ![alt text](image.png)
--  The symbols after a type declaration (:) or an assertion (as) are in type space, while everything after an = in an assignment is in value space. For example, ![alt text](image-1.png)
+-  The symbols after a type declaration (`:`) or an assertion (as) are in type space, while everything after an `=` in an assignment is in value space. For example, ![alt text](image-1.png)
 - There are many operators and keywords that mean different things in a type or value context. `typeof`, for instance:
     ```
     type T1 = typeof jane;
@@ -162,7 +162,7 @@
     ```
 - When should you use a type assertion? Type assertions make the most sense when you truly do know more about a type than TypeScript does.
     - When you use a type assertion, it’s a good idea to include an explanation of why it’s valid in a comment.
-    - Another case to use type assertion is when you want to remove `null` from a type. As a suffix, **!** is interpreted as a type assertion that the value is non-null. E.g.
+    - Another case to use type assertion is when you want to remove `null` from a type. A**s a suffix, **!** is interpreted as a type assertion that the value is non-null.** E.g.
         ```
         const el = document.getElementById('foo')!;
         //    ^? const el: HTMLElement
@@ -177,7 +177,7 @@
 	        - This comparison is `false` because "hello" is a primitive string, while `new String("hello")` creates a string object. Since they are of different types (primitive vs. object), the strict equality operator (===) returns false.
 	    2.	`new String("hello") === new String("hello")`:
 	        - This is `false` because each new String("hello") creates a new string object with a unique reference in memory. Even though they contain the same value, they are different objects with different references, so the strict equality operator (===) considers them unequal.
-- TypeScript models this distinction by having distinct types for the primitives and their object wrappers:
+- TypeScript models this distinction by having distinct types for the *primitives* and their *object wrappers*:
     - string and String
     - number and Number
     - boolean and Boolean
@@ -235,6 +235,39 @@
     ```
 
 ## Know the Differences Between `type` and `interface`
+- If you want to define a named type in TypeScript, you have two options. You can use a *type* alias, as shown here:
+    ```
+    type TState = {
+    name: string;
+    capital: string;
+    };
+    ```
+    Or define an *interface*:
+    ```
+    interface IState {
+    name: string;
+    capital: string;
+    }
+    ```
+- For new code where you need to pick a style, the general rule of thumb is to use `interface` where possible, using `type` either where it’s required (e.g., union types) or has a cleaner syntax (e.g., function types).
+- An interface have some abilities that a type doesn’t. One of these is that an interface can be augmented.                             
+
+    ```
+    interface IState {
+    name: string;
+    capital: string;
+    }
+    interface IState {
+    population: number;
+    }
+    const wyoming: IState = {
+    name: 'Wyoming',
+    capital: 'Cheyenne',
+    population: 578_000
+    };  // OK
+    ```
+
+
 ## Use `readonly` to Avoid Errors Associated with Mutation
 ## Use Type Operations and Generic Types to Avoid Repeating Yourself
 ## Prefer More Precise Alternatives to Index Signatures
