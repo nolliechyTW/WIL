@@ -20,7 +20,7 @@ Input: root = [3,5,1,6,2,0,8,null,null,7,4], nodes = [1]<br>
 Output: 1<br>
 Explanation: The lowest common ancestor of a single node is the node itself.<br>
 
-Example 2:<br>
+Example 3:<br>
 ![example3](image-2.png)<br>
 Input: root = [3,5,1,6,2,0,8,null,null,7,4], nodes = [7,6,2,4]<br>
 Output: 5<br>
@@ -40,7 +40,7 @@ Constraints:<br>
 > - Ask clarifying questions and use examples to understand what the interviewer wants out of this problem.
 > - Choose a “happy path” test input, different than the one provided, and a few edge case inputs. 
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
-1. HAre all values in tree unique?
+1. Are all values in tree unique?
     - all values in the tree are unique
 2. Any requirement on time/space complexity?
     - Time is O(N) and Space is O(1) excluding the recursion stack
